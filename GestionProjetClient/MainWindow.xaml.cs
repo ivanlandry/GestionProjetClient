@@ -1,3 +1,4 @@
+using GestionProjetClient.Pages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,11 +27,14 @@ namespace GestionProjetClient
         public MainWindow()
         {
             this.InitializeComponent();
+            Singleton.getInstance().setWindow(this);
+
+            if(Singleton.getInstance().adminExist())
+
+                mainFrame.Navigate(typeof(PageConnexion));
+            else
+                mainFrame.Navigate(typeof(PageEnregistrerAdmin));
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-        }
     }
 }
