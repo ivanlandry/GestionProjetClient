@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GestionProjetClient (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "GestionProjetClient (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
