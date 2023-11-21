@@ -10,8 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock HorizontalTextAlignment="Center" Margin="0 50 0 0" FontSize="30">Connexion</TextBlock>
+        <StackPanel Orientation="Vertical" x:Name="rootConnexion">
+            <TextBlock HorizontalTextAlignment="Center" Margin="0 50 0 0" FontSize="30" x:Name="titre">Connexion</TextBlock>
 
             <TextBox x:Name="tbxNomUtilisateur" Header="Nom d'utilisateur" Margin="20 30 20 0"></TextBox>
             <TextBlock x:Name="tblNomUtilisateurErreur" Foreground="Red" Margin="20 0 20 0"></TextBlock>
@@ -19,7 +19,7 @@
             <PasswordBox x:Name="tbxMotDePasse" Header="Mot de passe" Margin="20 30 20 0"></PasswordBox>
             <TextBlock x:Name="tblMotDePasseErreur" Foreground="Red" Margin="20 0 20 0"></TextBlock>
 
-            <Button x:Name="btnConnexion" Margin="20 30 20 0" HorizontalAlignment="Stretch" Background="CadetBlue">Se connecter</Button>
+            <Button x:Name="btnConnexion" Click="btnConnexion_Click" Margin="20 30 20 0" HorizontalAlignment="Stretch" Background="CadetBlue">Se connecter</Button>
             
         </StackPanel>
     </Grid>

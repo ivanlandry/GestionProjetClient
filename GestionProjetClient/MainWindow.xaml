@@ -8,11 +8,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView PaneDisplayMode="Left" x:Name="navView" PaneTitle="Employés" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+    <NavigationView PaneDisplayMode="Top" x:Name="navView" PaneTitle="Employés" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="navView_SelectionChanged">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Liste" x:Name="liste" Icon="List"></NavigationViewItem>
-            <NavigationViewItem Content="Ajouter" x:Name="ajouter" Icon="Add"></NavigationViewItem>
+
+            <NavigationViewItem Content="Employés" x:Name="listeEmploye" Icon="Folder"></NavigationViewItem>
+
+            <NavigationViewItem Content="Clients" x:Name="listeClient" Icon="Folder"></NavigationViewItem>
+
+            <NavigationViewItem Content="Projets" x:Name="listeProjet" Icon="Folder"></NavigationViewItem>
+           
         </NavigationView.MenuItems>
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem Content="Se connecter" x:Name="connexion" Icon="OtherUser"></NavigationViewItem>
+        </NavigationView.FooterMenuItems>
         <Frame x:Name="mainFrame"></Frame>
     </NavigationView>
 </Window>

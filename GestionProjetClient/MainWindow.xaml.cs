@@ -1,3 +1,4 @@
+using GestionProjetClient.Classes;
 using GestionProjetClient.Pages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -6,6 +7,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,17 +26,37 @@ namespace GestionProjetClient
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             this.InitializeComponent();
+           
             Singleton.getInstance().setWindow(this);
+            Singleton.getInstance().setNavigationViewItemConnexion(connexion);
 
-            if(Singleton.getInstance().adminExist())
-
-                mainFrame.Navigate(typeof(PageConnexion));
-            else
-                mainFrame.Navigate(typeof(PageEnregistrerAdmin));
+            mainFrame.Navigate(typeof(PageListeProjets));
+            
         }
 
+        private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var item = (NavigationViewItem)args.SelectedItem;
+
+            switch (item.Name)
+            {
+                case "listeProjet":
+                    mainFrame.Navigate(typeof(PageListeProjets));
+                    break;
+                case "connexion":
+                    if (Classes.Session.Statut)
+                    {
+                        connexion.Content = "Se connecter";
+                        connexion.Icon = new SymbolIcon(Symbol.OtherUser);
+                        Classes.Session.EndSession();
+                    }
+                    mainFrame.Navigate(typeof(PageConnexion));
+                    break;
+            }
+        }
     }
 }

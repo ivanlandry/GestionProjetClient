@@ -13,7 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\PageConnexion.xaml" />
-    <None Remove="Pages\PageEnregistrerAdmin.xaml" />
+    <None Remove="Pages\PageListeProjets.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageEnregistrerAdmin.xaml">
+    <Page Update="Pages\PageListeProjets.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
