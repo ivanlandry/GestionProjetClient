@@ -1,4 +1,5 @@
 using GestionProjetClient.Classes;
+using GestionProjetClient.dialogues;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -30,11 +31,11 @@ namespace GestionProjetClient.Pages
         {
             this.InitializeComponent();
 
-            if (!Session.Statut)
+           /* if (!Session.Statut)
                 ajouterProjet.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             else
                 ajouterProjet.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-
+           */
             this.listProjets = Singleton.getInstance().getProjets();
             gdvProjets.ItemsSource = this.listProjets;
      
@@ -45,9 +46,16 @@ namespace GestionProjetClient.Pages
 
         }
 
-        private void ajouterProjet_Click(object sender, RoutedEventArgs e)
+        private async void ajouterProjet_Click(object sender, RoutedEventArgs e)
         {
+           AjouterProjetDialogue dialogue = new AjouterProjetDialogue();
 
+            dialogue.XamlRoot = rootProjet.XamlRoot;
+            dialogue.Title = "Nouveau un projet";
+            dialogue.PrimaryButtonText = "Creer";
+            dialogue.DefaultButton = ContentDialogButton.Primary;
+
+            ContentDialogResult resultat = await dialogue.ShowAsync();
         }
     }
 }

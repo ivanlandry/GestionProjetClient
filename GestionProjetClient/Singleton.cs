@@ -159,6 +159,47 @@ namespace GestionProjetClient
             return projets;
         }
 
+        // clients
+
+        public void ajouterClient(Client client)
+        {
+            try {
+                MySqlCommand command = new MySqlCommand("p_ajouter_client");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("_nomClient",client.Nom);
+                command.Parameters.AddWithValue("_adresseClient", client.Adresse);
+                command.Parameters.AddWithValue("_telClient", client.Telephone);
+                command.Parameters.AddWithValue("_emailClient", client.Email);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch(MySqlException e)
+            {
+
+            }
+        }
+
+        public ObservableCollection<Client> getClients()
+        {
+            MySqlCommand commande = new MySqlCommand("afficheListeClient");
+            commande.Connection = con;
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            clients.Clear();
+            while (r.Read())
+            {
+                Client client = new Client(Convert.ToInt32(r["idClient"]), r["nomClient"].ToString(), r["adresseClient"].ToString(), r["numeroTel"].ToString(), r["emailClient"].ToString());
+                clients.Add(client);
+            }
+            con.Close();
+            return clients;
+        }
 
     }
 }

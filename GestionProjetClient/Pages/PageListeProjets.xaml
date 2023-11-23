@@ -5,13 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:GestionProjetClient.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local1="using:GestionProjetClient.Classes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local1="using:GestionProjetClient.Classes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
     <ScrollViewer>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" x:Name="rootProjet">
             <Button x:Name="ajouterProjet" Click="ajouterProjet_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="CadetBlue" Margin="0 20 20 20">Nouveau</Button>
 
             <TextBlock FontSize="25" Margin="20 20 0 20">Projets en cours</TextBlock>

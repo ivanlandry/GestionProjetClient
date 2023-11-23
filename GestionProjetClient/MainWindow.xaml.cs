@@ -47,6 +47,9 @@ namespace GestionProjetClient
                 case "listeProjet":
                     mainFrame.Navigate(typeof(PageListeProjets));
                     break;
+                case "listeClient":
+                    mainFrame.Navigate(typeof(PageListeClients));
+                    break;
                 case "connexion":
                     if (Classes.Session.Statut)
                     {
