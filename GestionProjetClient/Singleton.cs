@@ -171,6 +171,7 @@ namespace GestionProjetClient
         {
             try
             {
+                //AJOUTER PROCEDURE DATAGRIP
                 MySqlCommand command = new MySqlCommand("p_ajouter_projet");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;

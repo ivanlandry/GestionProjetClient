@@ -34,8 +34,14 @@ namespace GestionProjetClient
             Singleton.getInstance().setWindow(this);
             Singleton.getInstance().setNavigationViewItemConnexion(connexion);
 
+            if (Singleton.getInstance().adminExist())
+                Singleton.getInstance().getNavigationViewItemConnexion().Content = "se connecter";
+            else
+                Singleton.getInstance().getNavigationViewItemConnexion().Content = "s'enregistrer";
+
             mainFrame.Navigate(typeof(PageListeProjets));
-            
+
+
         }
 
         private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

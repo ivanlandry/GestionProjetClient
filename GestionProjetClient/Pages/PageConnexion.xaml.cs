@@ -33,12 +33,14 @@ namespace GestionProjetClient.Pages
 
             if (Singleton.getInstance().adminExist())
             {
+                Singleton.getInstance().getNavigationViewItemConnexion().Content = "se connecter";
                 titre.Text = "Se connecter";
                 btnConnexion.Content = " Se connecter";
                 this.adminExist = true;
             }
             else
             {
+                Singleton.getInstance().getNavigationViewItemConnexion().Content = "s'enregistrer";
                 titre.Text = "S'enregistrer";
                 btnConnexion.Content = " S'enregistrer";
                 this.adminExist = false;
