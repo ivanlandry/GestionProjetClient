@@ -238,5 +238,49 @@ namespace GestionProjetClient
             return clients;
         }
 
+        //EMPLOYE
+
+        public void ajouterEmploye(Employe employe)
+        {
+            //try
+            //{
+            //    MySqlCommand command = new MySqlCommand("p_ajouter_client");
+            //    command.Connection = con;
+            //    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+            //    command.Parameters.AddWithValue("_nomClient", client.Nom);
+            //    command.Parameters.AddWithValue("_adresseClient", client.Adresse);
+            //    command.Parameters.AddWithValue("_telClient", client.Telephone);
+            //    command.Parameters.AddWithValue("_emailClient", client.Email);
+
+            //    con.Open();
+            //    command.Prepare();
+            //    command.ExecuteNonQuery();
+            //    con.Close();
+            //}
+            //catch (MySqlException e)
+            //{
+
+            //}
+        }
+
+
+        public ObservableCollection<Employe> getEmployes()
+        {
+            MySqlCommand commande = new MySqlCommand("afficheEmploye");
+            commande.Connection = con;
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            employes.Clear();
+            while (r.Read())
+            {
+                Employe employe = new Employe(r["matriculeEmploye"].ToString(), r["nomEmploye"].ToString(), r["prenomEmploye"].ToString(), r["dateNaissance"].ToString(), r["dateEmbauche"].ToString(), r["emailEmploye"].ToString(), r["adresseEmploye"].ToString(), Convert.ToDouble(r["tauxHoraire"]), r["photo"].ToString(), r["statut"].ToString(), Convert.ToDouble(r["nbHeure"]));
+                employes.Add(employe);
+            }
+            con.Close();
+            return employes;
+        }
+
     }
 }

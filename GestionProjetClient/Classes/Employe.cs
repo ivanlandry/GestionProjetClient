@@ -18,8 +18,9 @@ namespace GestionProjetClient.Classes
         private double tauxHoraire;
         private string photo;
         private string statut;
+        private double nbHeure;
 
-        public Employe(string matricule, string nom, string prenom, string dateNaissance, string dateEmbauche, string email, string adresse, double tauxHoraire, string photo, string statut)
+        public Employe(string matricule, string nom, string prenom, string dateNaissance, string dateEmbauche, string email, string adresse, double tauxHoraire, string photo, string statut, double nbHeure)
         {
             this.Matricule = matricule;
             this.Nom = nom;
@@ -31,6 +32,8 @@ namespace GestionProjetClient.Classes
             this.TauxHoraire = tauxHoraire;
             this.Photo = photo;
             this.Statut = statut;
+            this.NbHeure = nbHeure;
+            
         }
 
         public string Matricule { get => matricule; set => matricule = value; }
@@ -43,6 +46,7 @@ namespace GestionProjetClient.Classes
         public double TauxHoraire { get => tauxHoraire; set => tauxHoraire = value; }
         public string Photo { get => photo; set => photo = value; }
         public string Statut { get => statut; set => statut = value; }
+        public double NbHeure { get => nbHeure; set => nbHeure = value; }
 
         private bool tauxHoraireValide()
         {
