@@ -139,24 +139,59 @@ namespace GestionProjetClient
 
         public ObservableCollection<Projet> getProjets()
         {
-            for (int i = 1; i <= 10; i++)
-            {
-                Projet project = new Projet(
-                    $"P{i}",
-                    $"Titre{i}",
-                    $"2023-01-01", // Replace with actual date
-                    $"Description{i}",
-                    10000.0 * i,
-                    5 + i,
-                    100 + i,
-                    $"Statut{i}",
-                    5000.0 * i
-                );
+            MySqlCommand commande = new MySqlCommand("afficheListeProjet");
+            commande.Connection = con;
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            projets.Clear();
 
-                projets.Add(project);
+            while (r.Read())
+            {
+                Projet projet = new Projet(
+                    r["numeroProjet"].ToString(),
+                    r["titre"].ToString(),
+                    r["dateDebut"].ToString(),
+                    r["description"].ToString(),
+                    Convert.ToDouble(r["budget"]),
+                    r["nbEmploye"].ToString(),
+                    r["idClient"].ToString(),
+                    r["statutProjet"].ToString(),
+                    Convert.ToDouble(r["totalSalaire"])
+                );
+                
+                projets.Add(projet);
             }
+            con.Close();
 
             return projets;
+        }
+
+        public void ajouterProjet(Projet projet)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("p_ajouter_projet");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("_titreProjet",projet.Titre);
+                command.Parameters.AddWithValue("_dateDebutProjet", projet.DateDebut);
+                command.Parameters.AddWithValue("_budgetProjet", projet.Budget);
+                command.Parameters.AddWithValue("_descriptionProjet", projet.Description);
+                command.Parameters.AddWithValue("_nbEmployeProjet", projet.NbEmploye);
+                command.Parameters.AddWithValue("_idClient", projet.IdClient);
+                command.Parameters.AddWithValue("_totalSalaireAPayer", projet.TotalSalaireAPayer);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+
+            }catch(MySqlException e)
+            {
+                Console.Write(e);
+            }
         }
 
         // clients
@@ -180,10 +215,11 @@ namespace GestionProjetClient
             }
             catch(MySqlException e)
             {
-
+               
             }
         }
 
+        
         public ObservableCollection<Client> getClients()
         {
             MySqlCommand commande = new MySqlCommand("afficheListeClient");

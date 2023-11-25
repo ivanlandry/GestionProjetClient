@@ -31,7 +31,7 @@ namespace GestionProjetClient.Classes
 
         public override string ToString()
         {
-            return $"{Nom}({Identifiant})";
+            return $"{Identifiant}-{Nom}";
 
         }
     }

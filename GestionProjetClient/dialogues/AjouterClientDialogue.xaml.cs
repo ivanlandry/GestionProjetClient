@@ -70,8 +70,7 @@ namespace GestionProjetClient.dialogues
                     Client client = new Client(0,tbxNom.Text,tbxAdresse.Text,tbxtelephone.Text,tbxEmail.Text);
 
                     Singleton.getInstance().ajouterClient(client);
-
-                    
+                
                 }
                 else
                 {

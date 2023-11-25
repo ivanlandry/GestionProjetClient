@@ -22,25 +22,91 @@ namespace GestionProjetClient.dialogues
 {
     public sealed partial class AjouterProjetDialogue : ContentDialog
     {
-        private Projet projet;
-        private ObservableCollection<Client> listClients;
+        private List<string> listClients = new List<string>();
         public AjouterProjetDialogue()
         {
             this.InitializeComponent();
-            this.listClients = Singleton.getInstance().getClients();
-            client.ItemsSource = this.listClients;
-        }
 
-        internal Projet Projet { get => projet; set => projet = value; }
+            foreach (var item in Singleton.getInstance().getClients())
+            {
+                this.listClients.Add(item.ToString());
+            }
+            dateDebut.Date = DateTime.Now;
+
+            tbxClient.ItemsSource = this.listClients;
+        }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-           
+            if (tbxDescription.Text == "")
+                tblDescriptionErreur.Text = " la description est requise";
+            else
+                tblDescriptionErreur.Text = "";
+
+            if (tbxTitre.Text == "")
+                tblTitreErreur.Text = " le titre est requis";
+            else
+                tblTitreErreur.Text = "";
+
+            if (tbxBudget.Text=="")
+                tblBudgetErreur.Text = "Le budget est requis";
+            else
+            {
+                if (!Validation.validerNombre(tbxBudget.Text))
+                    tblBudgetErreur.Text = "Budget invalide";
+                else
+                    tblBudgetErreur.Text = "";
+            }
+
+            if (DateTimeOffset.Compare(dateDebut.Date,DateTimeOffset.Now)<0)
+                tblDateDebutErreur.Text = "Date invalide";
+            else
+                tblDateDebutErreur.Text = "";
+
+            if (tbxClient.Text == "Aucun résultat" || tbxClient.Text=="")
+                tblClientErreur.Text = "Client invalide";
+            else
+                tblClientErreur.Text = "";
+
+            if (this.ContentDialog_PrimaryButtonClick != null)
+            {
+                if(tblTitreErreur.Text=="" && tblDateDebutErreur.Text=="" && tblDescriptionErreur.Text=="" && tblBudgetErreur.Text=="" && tblClientErreur.Text == "")
+                {
+                    string[] tabIdClient = tbxClient.Text.Split('-');
+                
+                    string[] tabDateDebut = dateDebut.Date.ToString().Split(' ');
+             
+                    Projet projet = new Projet("0",tbxTitre.Text, tabDateDebut[0], tbxDescription.Text,Convert.ToDouble(tbxBudget.Text),cbbNbEmploye.SelectedItem.ToString(), tabIdClient[0], "en cours",0);
+
+                    Singleton.getInstance().ajouterProjet(projet);
+                }
+                else
+                {
+                    this.Closing += AjouterProjetDialogue_Closing;
+                }
+            }
+
+        }
+
+        private void AjouterProjetDialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            args.Cancel = true;
         }
 
         private void client_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
+            List<string> suggestions = new List<string>();
 
+            foreach (var item in listClients)
+            {
+                if (item.Contains(tbxClient.Text))
+                    suggestions.Add(item);
+            }
+
+            if (suggestions.Count == 0)
+                suggestions.Add("Aucun résultat");
+
+            tbxClient.ItemsSource = suggestions;
         }
 
         private void client_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)

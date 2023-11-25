@@ -31,11 +31,11 @@ namespace GestionProjetClient.Pages
         {
             this.InitializeComponent();
 
-            /* if (!Session.Statut)
+             if (!Session.Statut)
                 ajouterClient.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             else
                 ajouterClient.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-           */
+           
             this.listClients = Singleton.getInstance().getClients();
             gdvClients.ItemsSource = this.listClients;
         }
@@ -47,6 +47,7 @@ namespace GestionProjetClient.Pages
             dialogue.XamlRoot = rootClient.XamlRoot;
             dialogue.Title = "Nouveau client";
             dialogue.PrimaryButtonText = "Creer";
+            dialogue.CloseButtonText = "fermer";
             dialogue.DefaultButton = ContentDialogButton.Primary;
 
             ContentDialogResult resultat = await dialogue.ShowAsync();
@@ -63,7 +64,7 @@ namespace GestionProjetClient.Pages
 
                     var result = await dialog.ShowAsync();
 
-                this.Frame.Navigate(typeof(PageListeClients));
+                    this.Frame.Navigate(typeof(PageListeProjets));
             }
         }
 

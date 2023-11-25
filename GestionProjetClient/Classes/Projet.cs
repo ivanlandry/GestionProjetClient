@@ -13,12 +13,12 @@ namespace GestionProjetClient.Classes
         private string dateDebut;
         private string description;
         private double budget;
-        private int nbEmploye;
-        private int idClient;
+        private string nbEmploye;
+        private string idClient;
         private string statut;
         private double totalSalaireAPayer;
 
-        public Projet(string numero, string titre, string dateDebut, string description, double budget, int nbEmploye, int idClient, string statut, double totalSalaireAPayer)
+        public Projet(string numero, string titre, string dateDebut, string description, double budget, string nbEmploye, string idClient, string statut, double totalSalaireAPayer)
         {
             this.Numero = numero;
             this.Titre = titre;
@@ -36,8 +36,8 @@ namespace GestionProjetClient.Classes
         public string DateDebut { get => dateDebut; set => dateDebut = value; }
         public string Description { get => description; set => description = value; }
         public double Budget { get => budget; set => budget = value; }
-        public int NbEmploye { get => nbEmploye; set => nbEmploye = value; }
-        public int IdClient { get => idClient; set => idClient = value; }
+        public string NbEmploye { get => nbEmploye; set => nbEmploye = value; }
+        public string IdClient { get => idClient; set => idClient = value; }
         public string Statut { get => statut; set => statut = value; }
         public double TotalSalaireAPayer { get => totalSalaireAPayer; set => totalSalaireAPayer = value; }
     }

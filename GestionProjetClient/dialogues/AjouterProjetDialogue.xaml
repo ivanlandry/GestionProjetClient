@@ -12,12 +12,15 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical">
-                <AutoSuggestBox x:Name="client" Header="Client" QueryIcon="Find" TextChanged="client_TextChanged" QuerySubmitted="client_QuerySubmitted"></AutoSuggestBox>
-               
+                <AutoSuggestBox x:Name="tbxClient" Header="Client" QueryIcon="Find" TextChanged="client_TextChanged" QuerySubmitted="client_QuerySubmitted"  Margin="10 10 10 10"></AutoSuggestBox>
+                <TextBlock x:Name="tblClientErreur" Foreground="Red"></TextBlock>
+                
                 <TextBox x:Name="tbxTitre" Header="Titre" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblTitreErreur" Foreground="Red"></TextBlock>
-                <TextBox x:Name="tbxBudget" Header="budget" Margin="10 10 10 10"></TextBox>
+                
+                <TextBox x:Name="tbxBudget" Header="Budget" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblBudgetErreur" Foreground="Red"></TextBlock>
+                
                 <ComboBox x:Name="cbbNbEmploye" Header="Nombre d'employés" Margin="10 10 10 10" SelectedIndex="0">
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -25,9 +28,13 @@
                     <x:String>4</x:String>
                     <x:String>5</x:String>
                 </ComboBox>
-                <DatePicker x:Name="dateDeut" Margin="10 10 10 10" Header="Date de début"></DatePicker>
+                
+                <DatePicker x:Name="dateDebut" Margin="10 10 10 10" Header="Date de début"></DatePicker>
+                <TextBlock x:Name="tblDateDebutErreur" Foreground="Red"></TextBlock>
+                
+                <TextBlock x:Name="tblDescriptionErreur" Foreground="Red"></TextBlock>
                 <TextBox x:Name="tbxDescription" Header="Description" MinHeight="70" Margin="10 10 10 10"></TextBox>
-               
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

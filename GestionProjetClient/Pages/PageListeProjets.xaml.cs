@@ -31,11 +31,11 @@ namespace GestionProjetClient.Pages
         {
             this.InitializeComponent();
 
-           /* if (!Session.Statut)
+            if (!Session.Statut)
                 ajouterProjet.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             else
                 ajouterProjet.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-           */
+           
             this.listProjets = Singleton.getInstance().getProjets();
             gdvProjets.ItemsSource = this.listProjets;
      
@@ -53,9 +53,31 @@ namespace GestionProjetClient.Pages
             dialogue.XamlRoot = rootProjet.XamlRoot;
             dialogue.Title = "Nouveau un projet";
             dialogue.PrimaryButtonText = "Creer";
+            dialogue.CloseButtonText = "fermer";
             dialogue.DefaultButton = ContentDialogButton.Primary;
 
             ContentDialogResult resultat = await dialogue.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                dialogue.Closing += Dialogue_Closing;   
+
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = rootProjet.XamlRoot;
+                dialog.Title = "Ajout";
+                dialog.CloseButtonText = "OK";
+                dialog.Content = "ajout réussi!";
+
+                var result = await dialog.ShowAsync();
+
+                this.Frame.Navigate(typeof(PageListeProjets));
+            }
+
+        }
+
+        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            args.Cancel = true;
         }
     }
 }

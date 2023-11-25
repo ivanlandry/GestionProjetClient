@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +18,19 @@ namespace GestionProjetClient.Classes
             return regex.IsMatch(email);
         }
 
+        
+        public static bool validerNombre(string nombre)
+        {
+            try
+            {
+                double nb = Convert.ToDouble(nombre);
+                return true;
+
+            }catch(Exception e)
+            {
+                return false;
+            }
+        }
         public static bool validerTelephone(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))
@@ -24,7 +38,6 @@ namespace GestionProjetClient.Classes
 
             try
             {
-             
                 string phonePattern = @"^\d{10}$";
                 Regex regex = new Regex(phonePattern);
 
@@ -32,8 +45,6 @@ namespace GestionProjetClient.Classes
             }
             catch (RegexMatchTimeoutException)
             {
-                // La validation de l'expression régulière a pris trop de temps.
-                // Gérer cette exception selon les besoins spécifiques de votre application.
                 return false;
             }
         }
