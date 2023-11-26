@@ -27,6 +27,19 @@ namespace GestionProjetClient.dialogues
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            if (tbxNom.Text == "")
+                tblNomErreur.Text = "Le nom est requis";
+            else
+                tblNomErreur.Text = "";
+
+            //if (tbxPrenom.Text == "")
+            //    tblPrenomErreur.Text = "Le prenom est requis";
+            //else
+            //    tblPrenomErreur.Text = "";
+
+            
+
+            
 
         }
     }
