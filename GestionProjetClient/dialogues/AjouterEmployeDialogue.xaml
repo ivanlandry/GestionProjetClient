@@ -15,13 +15,11 @@
 
                 <TextBox x:Name="tbxNom" Header="Nom" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblNomErreur" Foreground="Red"></TextBlock>
-
-
-
+                
                 <TextBox x:Name="tbxPrenom" Header="Prenom" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblPrenomErreur" Foreground="red"></TextBlock>
 
-                <TextBox x:Name="tbxdateNaissance" Header="Date Naissance" Margin="10 10 10 10"></TextBox>
+                <DatePicker x:Name="tbxDateNaissance" Header="Date Naissance" Margin="10 10 10 10"></DatePicker>
                 <TextBlock x:Name="tblDateNaissanceErreur" Foreground="Red"></TextBlock>
 
                 <TextBox x:Name="tbxEmail" Header="Email" Margin="10 10 10 10"></TextBox>
@@ -30,20 +28,20 @@
                 <TextBox x:Name="tbxAdresse" Header="Adresse" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblAdresseErreur" Foreground="Red"></TextBlock>
 
-                <TextBox x:Name="tbxdateEmbauche" Header="Date Embauche" Margin="10 10 10 10"></TextBox>
+                <DatePicker x:Name="tbxDateEmbauche" Header="Date Embauche" Margin="10 10 10 10"></DatePicker>
                 <TextBlock x:Name="tblDateEmbaucheErreur" Foreground="Red"></TextBlock>
 
-                <TextBox x:Name="tbxtauxHoraire" Header="tauxHoraire" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tbltauxHoraireErreur" Foreground="Red"></TextBlock>
+                <TextBox x:Name="tbxTauxHoraire" Header="Taux Horaire" Margin="10 10 10 10"></TextBox>
+                <TextBlock x:Name="tblTauxHoraireErreur" Foreground="Red"></TextBlock>
 
-                <TextBox x:Name="tbxphoto" Header="photo" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblphotoErreur" Foreground="Red"></TextBlock>
+                <TextBox x:Name="tbxPhoto" Header="Photo" Margin="10 10 10 10"></TextBox>
+                <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
 
-                <TextBox x:Name="tbxstatut" Header="statut" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblstatutErreur" Foreground="Red"></TextBlock>
+                <TextBox x:Name="tbxStatut" Header="Statut" Margin="10 10 10 10"></TextBox>
+                <TextBlock x:Name="tblStatutErreur" Foreground="Red"></TextBlock>
 
-                <TextBox x:Name="tbxnbHeure" Header="nbHeure" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblnbHeureErreur" Foreground="Red"></TextBlock>
+                <TextBox x:Name="tbxNbHeure" Header="NbHeure" Margin="10 10 10 10"></TextBox>
+                <TextBlock x:Name="tblNbHeureErreur" Foreground="Red"></TextBlock>
 
 
                 <TextBlock x:Name="coucou" ></TextBlock>

@@ -175,7 +175,7 @@ namespace GestionProjetClient
         {
             try
             {
-                MySqlCommand command = new MySqlCommand("p_ajouter_projet");
+                MySqlCommand command = new MySqlCommand("ajoutClient");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -219,7 +219,7 @@ namespace GestionProjetClient
             }
             catch(MySqlException e)
             {
-               
+               Console.WriteLine(e);
             }
         }
 
@@ -251,16 +251,16 @@ namespace GestionProjetClient
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("nomEmploye", employe.Nom);
-                command.Parameters.AddWithValue("prenomEmploye", employe.Prenom);
-                command.Parameters.AddWithValue("dateNaissance", employe.DateNaissance);
-                command.Parameters.AddWithValue("emailEmploye", employe.Email);
-                command.Parameters.AddWithValue("adresseEmploye", employe.Adresse);
-                command.Parameters.AddWithValue("dateEmbauche", employe.DateEmbauche);
-                command.Parameters.AddWithValue("tauxHoraire", employe.TauxHoraire);
-                command.Parameters.AddWithValue("photo", employe.Photo);
-                command.Parameters.AddWithValue("statut", employe.Statut);
-                command.Parameters.AddWithValue("nbHeure", employe.NbHeure);
+                command.Parameters.AddWithValue("_nomEmploye", employe.Nom);
+                command.Parameters.AddWithValue("_prenomEmploye", employe.Prenom);
+                command.Parameters.AddWithValue("_dateNaissance", employe.DateNaissance != DateTime.MinValue ? employe.DateNaissance.ToString("yyyy-MM-dd") : null);
+                command.Parameters.AddWithValue("_emailEmploye", employe.Email);
+                command.Parameters.AddWithValue("_adresseEmploye", employe.Adresse);
+                command.Parameters.AddWithValue("_dateEmbauche", employe.DateEmbauche != DateTime.MinValue ? employe.DateEmbauche.ToString("yyyy-MM-dd") : null);
+                command.Parameters.AddWithValue("_tauxHoraire", employe.TauxHoraire);
+                command.Parameters.AddWithValue("_photo", employe.Photo);
+                command.Parameters.AddWithValue("_statut", employe.Statut);
+                command.Parameters.AddWithValue("_nbHeure", employe.NbHeure);
 
                 con.Open();
                 command.Prepare();
@@ -269,7 +269,7 @@ namespace GestionProjetClient
             }
             catch (MySqlException e)
             {
-
+                Console.WriteLine(e.ToString());
             }
         }
 
@@ -284,7 +284,7 @@ namespace GestionProjetClient
             employes.Clear();
             while (r.Read())
             {
-                Employe employe = new Employe(r["matriculeEmploye"].ToString(), r["nomEmploye"].ToString(), r["prenomEmploye"].ToString(), r["dateNaissance"].ToString(), r["dateEmbauche"].ToString(), r["emailEmploye"].ToString(), r["adresseEmploye"].ToString(), Convert.ToDouble(r["tauxHoraire"]), r["photo"].ToString(), r["statut"].ToString(), Convert.ToDouble(r["nbHeure"]));
+                Employe employe = new Employe(r["matriculeEmploye"].ToString(), r["nomEmploye"].ToString(), r["prenomEmploye"].ToString(), Convert.ToString( r["dateNaissance"]), r["emailEmploye"].ToString(), r["adresseEmploye"].ToString(),Convert.ToString( r["dateEmbauche"]), Convert.ToString(r["tauxHoraire"]), r["photo"].ToString(), r["statut"].ToString(), Convert.ToString(r["nbHeure"]));
                 employes.Add(employe);
             }
             con.Close();
