@@ -2,12 +2,16 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Protection.PlayReady;
+using Client = GestionProjetClient.Classes.Client;
+using Session = GestionProjetClient.Classes.Session;
 
 namespace GestionProjetClient
 {
@@ -171,7 +175,6 @@ namespace GestionProjetClient
         {
             try
             {
-                //AJOUTER PROCEDURE DATAGRIP
                 MySqlCommand command = new MySqlCommand("p_ajouter_projet");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -242,26 +245,32 @@ namespace GestionProjetClient
 
         public void ajouterEmploye(Employe employe)
         {
-            //try
-            //{
-            //    MySqlCommand command = new MySqlCommand("p_ajouter_client");
-            //    command.Connection = con;
-            //    command.CommandType = System.Data.CommandType.StoredProcedure;
+            try
+            {
+                MySqlCommand command = new MySqlCommand("ajouterEmploye");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            //    command.Parameters.AddWithValue("_nomClient", client.Nom);
-            //    command.Parameters.AddWithValue("_adresseClient", client.Adresse);
-            //    command.Parameters.AddWithValue("_telClient", client.Telephone);
-            //    command.Parameters.AddWithValue("_emailClient", client.Email);
+                command.Parameters.AddWithValue("nomEmploye", employe.Nom);
+                command.Parameters.AddWithValue("prenomEmploye", employe.Prenom);
+                command.Parameters.AddWithValue("dateNaissance", employe.DateNaissance);
+                command.Parameters.AddWithValue("emailEmploye", employe.Email);
+                command.Parameters.AddWithValue("adresseEmploye", employe.Adresse);
+                command.Parameters.AddWithValue("dateEmbauche", employe.DateEmbauche);
+                command.Parameters.AddWithValue("tauxHoraire", employe.TauxHoraire);
+                command.Parameters.AddWithValue("photo", employe.Photo);
+                command.Parameters.AddWithValue("statut", employe.Statut);
+                command.Parameters.AddWithValue("nbHeure", employe.NbHeure);
 
-            //    con.Open();
-            //    command.Prepare();
-            //    command.ExecuteNonQuery();
-            //    con.Close();
-            //}
-            //catch (MySqlException e)
-            //{
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
 
-            //}
+            }
         }
 
 
