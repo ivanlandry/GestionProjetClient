@@ -6,6 +6,7 @@ using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -175,7 +176,7 @@ namespace GestionProjetClient
         {
             try
             {
-                MySqlCommand command = new MySqlCommand("ajoutClient");
+                MySqlCommand command = new MySqlCommand("p_ajouter_projet");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -203,7 +204,8 @@ namespace GestionProjetClient
         public void ajouterClient(Client client)
         {
             try {
-                MySqlCommand command = new MySqlCommand("p_ajouter_client");
+                //MySqlCommand command = new MySqlCommand("p_ajouter_client");
+                MySqlCommand command = new MySqlCommand("ajoutClient");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -269,17 +271,20 @@ namespace GestionProjetClient
             }
             catch (MySqlException e)
             {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine(e);
             }
         }
 
 
         public ObservableCollection<Employe> getEmployes()
         {
-            MySqlCommand commande = new MySqlCommand("afficheEmploye");
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            MySqlCommand commande = new MySqlCommand("afficheListeEmploye");
             commande.Connection = con;
             commande.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             employes.Clear();
             while (r.Read())
@@ -289,6 +294,7 @@ namespace GestionProjetClient
             }
             con.Close();
             return employes;
+           
         }
 
     }
