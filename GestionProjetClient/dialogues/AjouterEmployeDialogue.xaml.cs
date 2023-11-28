@@ -31,6 +31,15 @@ namespace GestionProjetClient.dialogues
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             bool erreur = false;
+            //if (tbxMatricule.Text == "")
+            //{
+            //    tblMatriculeErreur.Text = "kdkd";
+            //    erreur = true;
+            //}
+            //else
+            //    tblMatriculeErreur.Text = "";
+            
+
             if (tbxNom.Text == "")
             {
                 tblNomErreur.Text = "Le nom est requis";
@@ -58,27 +67,45 @@ namespace GestionProjetClient.dialogues
             //    tblDateEmbaucheErreur.Text = "";
 
             if (tbxEmail.Text == "")
+            {
                 tblEmailErreur.Text = "La tbxEmail est requis";
+                erreur = true;
+            }
             else tblEmailErreur.Text = "";
 
             if (tbxAdresse.Text == "")
+            {
                 tblAdresseErreur.Text = "La tbxAdresse est requis";
+                erreur = true;
+            }
             else tblAdresseErreur.Text = "";
 
             if (tbxTauxHoraire.Text == "")
+            {
                 tblTauxHoraireErreur.Text = "La tbxTauxHoraire est requis";
+                erreur = true;
+            }
             else tblTauxHoraireErreur.Text = "";
 
             if (tbxPhoto.Text == "")
+            {
                 tblPhotoErreur.Text = "La tbxPhoto est requis";
+                erreur = true;
+            }
             else tblPhotoErreur.Text = "";
 
             if (tbxStatut.Text == "")
+            {
                 tblStatutErreur.Text = "La tbxStatut est requis";
+                erreur = true;
+            }
             else tblStatutErreur.Text = "";
 
             if (tbxNbHeure.Text == "")
+            {
                 tblNbHeureErreur.Text = "La NbHeure est requis";
+                erreur = true;
+            }
             else tblNbHeureErreur.Text = "";
 
 
@@ -88,7 +115,7 @@ namespace GestionProjetClient.dialogues
                 {
                     if (!erreur)
                     {
-                        Employe employe = new Employe(null, tbxNom.Text, tbxPrenom.Text, Convert.ToString(tbxDateNaissance), tbxEmail.Text, tbxAdresse.Text, Convert.ToString(tbxDateEmbauche), tbxTauxHoraire.Text, tbxPhoto.Text, tbxStatut.Text, tbxNbHeure.Text);
+                        Employe employe = new Employe("hg",tbxNom.Text, tbxPrenom.Text, Convert.ToString(tbxDateNaissance), tbxEmail.Text, tbxAdresse.Text, Convert.ToString(tbxDateEmbauche), tbxTauxHoraire.Text, tbxPhoto.Text, tbxStatut.Text, tbxNbHeure.Text);
                         Singleton.getInstance().ajouterEmploye(employe);
                     }
                     else

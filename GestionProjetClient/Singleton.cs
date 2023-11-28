@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -253,6 +254,8 @@ namespace GestionProjetClient
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                //command.Parameters.AddWithValue("_matriculeEmploye", employe.Matricule);
+
                 command.Parameters.AddWithValue("_nomEmploye", employe.Nom);
                 command.Parameters.AddWithValue("_prenomEmploye", employe.Prenom);
                 command.Parameters.AddWithValue("_dateNaissance", employe.DateNaissance != DateTime.MinValue ? employe.DateNaissance.ToString("yyyy-MM-dd") : null);
@@ -272,6 +275,7 @@ namespace GestionProjetClient
             catch (MySqlException e)
             {
                 Console.WriteLine(e);
+                Debug.WriteLine(e.Message);
             }
         }
 
@@ -285,6 +289,7 @@ namespace GestionProjetClient
             MySqlCommand commande = new MySqlCommand("afficheListeEmploye");
             commande.Connection = con;
             commande.CommandType = System.Data.CommandType.StoredProcedure;
+            //con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             employes.Clear();
             while (r.Read())

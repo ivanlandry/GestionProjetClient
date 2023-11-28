@@ -13,6 +13,10 @@
         <ScrollViewer>
             <StackPanel Orientation="Vertical">
 
+                <!--<TextBox x:Name="tbxMatricule" Header="Matricule"></TextBox>
+                <TextBlock x:Name="tblMatriculeErreur"></TextBlock>-->
+                
+                
                 <TextBox x:Name="tbxNom" Header="Nom" Margin="10 10 10 10"></TextBox>
                 <TextBlock x:Name="tblNomErreur" Foreground="Red"></TextBlock>
                 
