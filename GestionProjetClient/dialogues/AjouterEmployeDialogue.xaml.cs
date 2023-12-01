@@ -31,82 +31,95 @@ namespace GestionProjetClient.dialogues
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             bool erreur = false;
-            //if (tbxMatricule.Text == "")
-            //{
-            //    tblMatriculeErreur.Text = "kdkd";
-            //    erreur = true;
-            //}
-            //else
-            //    tblMatriculeErreur.Text = "";
-            
+
 
             if (tbxNom.Text == "")
             {
                 tblNomErreur.Text = "Le nom est requis";
-                 erreur = true;
+                erreur = true;
             }
             else
-                tblNomErreur.Text = "";
+            { 
+                tblNomErreur.Text = ""; 
+            }
 
             if (tbxPrenom.Text == "")
             {
                 tblPrenomErreur.Text = "Le prenom est requis";
-            erreur = true;
+                erreur = true;
 
             }
-            else tblPrenomErreur.Text = "";
+            else 
+            { 
+                tblPrenomErreur.Text = ""; 
+            }
 
-            //if (tbxDateNaissance.Date)
-            //    tblDateNaissanceErreur.Text = "date de naissance invalide";
-            //else
-            //    tblDateNaissanceErreur.Text = "";
+            if (DateTimeOffset.Compare(tbxDateNaissance.Date, DateTimeOffset.Now) < 0)
+                tblDateNaissanceErreur.Text = "date de naissance invalide";
+            else
+                tblDateNaissanceErreur.Text = "";
 
-            //if (DateTimeOffset.Compare(tbxDateEmbauche.Date, DateTimeOffset.Now) < 0)
-            //    tblDateEmbaucheErreur.Text = "date embauche invalide";
-            //else
-            //    tblDateEmbaucheErreur.Text = "";
+            if (DateTimeOffset.Compare(tbxDateEmbauche.Date, DateTimeOffset.Now) < 0)
+                tblDateEmbaucheErreur.Text = "date embauche invalide";
+            else
+                tblDateEmbaucheErreur.Text = "";
 
+            //if (tbxEmail.Text == "")
+            //{
+            //    tblEmailErreur.Text = "La tbxEmail est requis";
+            //    erreur = true;
+            //}
+            //else tblEmailErreur.Text = "";
             if (tbxEmail.Text == "")
             {
-                tblEmailErreur.Text = "La tbxEmail est requis";
+                tblEmailErreur.Text = "l'email est requis";
                 erreur = true;
             }
-            else tblEmailErreur.Text = "";
+            else
+            {
+                if (Validation.validerEmail(tbxEmail.Text))
+                {
+                    tblEmailErreur.Text = "";
+                }
+                else
+                    tblEmailErreur.Text = "Adresse email invalide";
+            }
 
             if (tbxAdresse.Text == "")
             {
                 tblAdresseErreur.Text = "La tbxAdresse est requis";
                 erreur = true;
             }
-            else tblAdresseErreur.Text = "";
+            else
+            { tblAdresseErreur.Text = ""; }
 
             if (tbxTauxHoraire.Text == "")
             {
                 tblTauxHoraireErreur.Text = "La tbxTauxHoraire est requis";
                 erreur = true;
             }
-            else tblTauxHoraireErreur.Text = "";
+            else { tblTauxHoraireErreur.Text = ""; }
 
             if (tbxPhoto.Text == "")
             {
                 tblPhotoErreur.Text = "La tbxPhoto est requis";
                 erreur = true;
             }
-            else tblPhotoErreur.Text = "";
+            else { tblPhotoErreur.Text = ""; }
 
             if (tbxStatut.Text == "")
             {
                 tblStatutErreur.Text = "La tbxStatut est requis";
                 erreur = true;
             }
-            else tblStatutErreur.Text = "";
+            else { tblStatutErreur.Text = ""; }
 
             if (tbxNbHeure.Text == "")
             {
                 tblNbHeureErreur.Text = "La NbHeure est requis";
                 erreur = true;
             }
-            else tblNbHeureErreur.Text = "";
+            else { tblNbHeureErreur.Text = ""; }
 
 
             if (this.ContentDialog_PrimaryButtonClick != null)
@@ -115,7 +128,7 @@ namespace GestionProjetClient.dialogues
                 {
                     if (!erreur)
                     {
-                        Employe employe = new Employe("hg",tbxNom.Text, tbxPrenom.Text, Convert.ToString(tbxDateNaissance), tbxEmail.Text, tbxAdresse.Text, Convert.ToString(tbxDateEmbauche), tbxTauxHoraire.Text, tbxPhoto.Text, tbxStatut.Text, tbxNbHeure.Text);
+                        Employe employe = new Employe("hg",tbxNom.Text, tbxPrenom.Text, tbxDateNaissance.Date.ToString("yyyy-MM-dd"), tbxEmail.Text, tbxAdresse.Text, tbxDateEmbauche.Date.ToString("yyyy-MM-dd"), tbxTauxHoraire.Text, tbxPhoto.Text, tbxStatut.Text, tbxNbHeure.Text);
                         Singleton.getInstance().ajouterEmploye(employe);
                     }
                     else

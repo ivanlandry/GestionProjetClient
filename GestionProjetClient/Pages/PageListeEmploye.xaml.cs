@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using GestionProjetClient.Classes;
 using GestionProjetClient.dialogues;
+using GestionProjetClient.Modification;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -74,7 +75,17 @@ namespace GestionProjetClient.Pages
 
         private void gdvEmployes_ItemClick(object sender, ItemClickEventArgs e)
         {
+            try
+            {
+                this.Frame.Navigate(typeof(PageZoomEmploye), listEmployes[gdvEmployes.SelectedIndex]);
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(e);
+
+
+            }
         }
     }
 }

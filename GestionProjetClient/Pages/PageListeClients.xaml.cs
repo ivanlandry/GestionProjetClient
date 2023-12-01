@@ -1,5 +1,6 @@
 using GestionProjetClient.Classes;
 using GestionProjetClient.dialogues;
+using GestionProjetClient.Modification;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,6 +27,7 @@ namespace GestionProjetClient.Pages
     /// </summary>
     public sealed partial class PageListeClients : Page
     {
+        //ObservableCollection<Client> listClients = Singleton.getInstance().getClients;
         private ObservableCollection<Client> listClients=null;
         public PageListeClients()
         {
@@ -75,6 +77,25 @@ namespace GestionProjetClient.Pages
 
         private void gdvClients_ItemClick(object sender, ItemClickEventArgs e)
         {
+
+        }
+
+        private void gdvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (listClients.Count) > 0)
+            try
+            {
+                this.Frame.Navigate(typeof(PageZoomClients), listClients[gdvClients.SelectedIndex]);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(e);
+
+
+            }
 
         }
     }

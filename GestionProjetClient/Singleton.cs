@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Capture;
 using Windows.Media.Protection.PlayReady;
 using Client = GestionProjetClient.Classes.Client;
 using Session = GestionProjetClient.Classes.Session;
@@ -250,7 +251,7 @@ namespace GestionProjetClient
         {
             try
             {
-                MySqlCommand command = new MySqlCommand("ajouterEmploye");
+                MySqlCommand command = new MySqlCommand("ajouterEmploye2");
                 command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -258,10 +259,10 @@ namespace GestionProjetClient
 
                 command.Parameters.AddWithValue("_nomEmploye", employe.Nom);
                 command.Parameters.AddWithValue("_prenomEmploye", employe.Prenom);
-                command.Parameters.AddWithValue("_dateNaissance", employe.DateNaissance != DateTime.MinValue ? employe.DateNaissance.ToString("yyyy-MM-dd") : null);
+                command.Parameters.AddWithValue("_dateNaissance", employe.DateNaissance);
                 command.Parameters.AddWithValue("_emailEmploye", employe.Email);
                 command.Parameters.AddWithValue("_adresseEmploye", employe.Adresse);
-                command.Parameters.AddWithValue("_dateEmbauche", employe.DateEmbauche != DateTime.MinValue ? employe.DateEmbauche.ToString("yyyy-MM-dd") : null);
+                command.Parameters.AddWithValue("_dateEmbauche", employe.DateEmbauche);
                 command.Parameters.AddWithValue("_tauxHoraire", employe.TauxHoraire);
                 command.Parameters.AddWithValue("_photo", employe.Photo);
                 command.Parameters.AddWithValue("_statut", employe.Statut);
@@ -301,6 +302,97 @@ namespace GestionProjetClient
             return employes;
            
         }
+
+
+        /*========================= MODIFIER CLIENT ===================================== */
+        public void modifierClient(Client client)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("modifierClient");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("_idClient", client.Identifiant);
+                command.Parameters.AddWithValue("_nomClient", client.Nom);
+                command.Parameters.AddWithValue("_adresseClient", client.Adresse);
+                command.Parameters.AddWithValue("_telClient", client.Telephone);
+                command.Parameters.AddWithValue("_emailClient", client.Email);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        /*========================= Affiche dernier CLIENT ===================================== */
+        public void getDernierClient(Client client)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("afficheDernierClient");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("_nomClient", client.Nom);
+                command.Parameters.AddWithValue("_adresseClient", client.Adresse);
+                command.Parameters.AddWithValue("_telClient", client.Telephone);
+                command.Parameters.AddWithValue("_emailClient", client.Email);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+
+        /*========================= MODIFIER EMPLOYE ===================================== */
+        public void modifierEmploye(Employe employe)
+        {
+            try
+            {
+                
+                    MySqlCommand command = new MySqlCommand("modifierEmploye");
+                    command.Connection = con;
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("_mariculeEmploye", employe.Matricule);
+                    command.Parameters.AddWithValue("nom", employe.Nom);
+                    command.Parameters.AddWithValue("prenom", employe.Prenom);
+                    command.Parameters.AddWithValue("email", employe.Email);
+                    command.Parameters.AddWithValue("adresse", employe.Adresse);
+                    command.Parameters.AddWithValue("taux_horaire", employe.TauxHoraire);
+                    command.Parameters.AddWithValue("la_photo", employe.Photo);
+                    command.Parameters.AddWithValue("le_statut", employe.Statut);
+
+                    con.Open();
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    con.Close();
+                
+                
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        // ============================ AFFICHE PHOTO =================================
+
+        public ObservableCollection<Employe> getPhoto()
+        {
+            return employes;
+        }
+
 
     }
 }

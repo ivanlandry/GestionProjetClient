@@ -38,18 +38,38 @@ namespace GestionProjetClient.dialogues
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            bool erreur = false;
+
             if (tbxDescription.Text == "")
+            {
                 tblDescriptionErreur.Text = " la description est requise";
+                erreur = true;
+            }
+                
             else
+            {
                 tblDescriptionErreur.Text = "";
+            }
+                
 
             if (tbxTitre.Text == "")
-                tblTitreErreur.Text = " le titre est requis";
+            {
+                tblTitreErreur.Text = " le titre est requis"; 
+                erreur = true;
+            }
+                
             else
+            {
                 tblTitreErreur.Text = "";
+            }
+                
 
             if (tbxBudget.Text=="")
-                tblBudgetErreur.Text = "Le budget est requis";
+            {
+                tblBudgetErreur.Text = "Le budget est requis"; 
+                erreur = true;
+            }
+                
             else
             {
                 if (!Validation.validerNombre(tbxBudget.Text))
@@ -59,18 +79,31 @@ namespace GestionProjetClient.dialogues
             }
 
             if (DateTimeOffset.Compare(dateDebut.Date,DateTimeOffset.Now)<0)
-                tblDateDebutErreur.Text = "Date invalide";
+            {
+                tblDateDebutErreur.Text = "Date invalide"; 
+                erreur =true;
+            }
+                
             else
+            {
                 tblDateDebutErreur.Text = "";
+            }
+                
 
             if (tbxClient.Text == "Aucun résultat" || tbxClient.Text=="")
-                tblClientErreur.Text = "Client invalide";
+            {
+                tblClientErreur.Text = "Client invalide"; 
+                erreur=true;
+            }
             else
+            {
                 tblClientErreur.Text = "";
+            }
+                
 
             if (this.ContentDialog_PrimaryButtonClick != null)
             {
-                if(tblTitreErreur.Text=="" && tblDateDebutErreur.Text=="" && tblDescriptionErreur.Text=="" && tblBudgetErreur.Text=="" && tblClientErreur.Text == "")
+                if(!erreur)
                 {
                     string[] tabIdClient = tbxClient.Text.Split('-');
                 

@@ -12,9 +12,22 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="NewFolder1\**" />
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder1\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder1\**" />
+    <None Remove="NewFolder\**" />
+    <Page Remove="NewFolder1\**" />
+    <Page Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="dialogues\AjouterClientDialogue.xaml" />
     <None Remove="dialogues\AjouterEmployeDialogue.xaml" />
     <None Remove="dialogues\AjouterProjetDialogue.xaml" />
+    <None Remove="Modification\PageZoomClients.xaml" />
+    <None Remove="Modification\PageZoomEmploye.xaml" />
+    <None Remove="Modification\PageZoomProjet.xaml" />
     <None Remove="Pages\PageConnexion.xaml" />
     <None Remove="Pages\PageListeClients.xaml" />
     <None Remove="Pages\PageListeEmploye.xaml" />
@@ -90,4 +103,30 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="NewFolder1\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Modification\PageZoomProjet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Modification\PageZoomClients.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Modification\PageZoomEmploye.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="NewFolder2\PageZoomClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>

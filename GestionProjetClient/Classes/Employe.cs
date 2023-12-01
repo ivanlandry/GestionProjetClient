@@ -1,24 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GestionProjetClient.Classes
 {
-    class Employe
+    internal class Employe : INotifyPropertyChanged
     {
-        private string matricule;
-        private string nom;
-        private string prenom;
-        private DateTime dateNaissance;
-        private DateTime dateEmbauche;
-        private string email;
-        private string adresse;
-        private double tauxHoraire;
-        private string photo;
-        private string statut;
-        private double nbHeure;
+        //private string matricule;
+        //private string nom;
+        //private string prenom;
+        //private DateTime dateNaissance;
+        //private DateTime dateEmbauche;
+        //private string email;
+        //private string adresse;
+        //private double tauxHoraire;
+        //private string photo;
+        //private string statut;
+        //private double nbHeure;
+
+         string matricule;
+         string nom;
+         string prenom;
+         DateTime dateNaissance;
+         DateTime dateEmbauche;
+         string email;
+         string adresse;
+         double tauxHoraire;
+         string photo;
+         string statut;
+         double nbHeure;
 
         public Employe(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, string tauxHoraire, string photo, string statut, string nbHeure)
         {
@@ -57,11 +71,17 @@ namespace GestionProjetClient.Classes
             else
                 return true;
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         public override string ToString()
         {
             return $"{Matricule}-{Nom}";
+        }
+        public void notify([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
     }
 }
