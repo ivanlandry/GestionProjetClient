@@ -29,30 +29,49 @@ namespace GestionProjetClient.dialogues
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            bool erreur = false;
             
             if (tbxNom.Text == "")
-                tblNomErreur.Text = "le nom est requis";
+            {
+                tblNomErreur.Text = "le nom est requis"; 
+                erreur = true; 
+            }                
             else
+            {
                 tblNomErreur.Text = "";
+            }
+                
 
             if (tbxAdresse.Text == "")
+            {   
                 tblAdresseErreur.Text = "l'adrese est requis";
+                erreur = true;
+            }
             else
+            { 
                 tblAdresseErreur.Text = "";
-
+            }
+            
             if (tbxtelephone.Text == "")
-                tblTelephoneErreur.Text = "le telephone est requis";
+            {
+                tblTelephoneErreur.Text = "le telephone est requis"; 
+                erreur = true;
+            }
             else
             {
                 if (Validation.validerTelephone(tbxtelephone.Text))
                 {
                     tblTelephoneErreur.Text = "";
-                }else
+                }
+                else
                     tblTelephoneErreur.Text = "Numéro invalide invalide";
             }
 
             if (tbxEmail.Text == "")
-                tblEmailErreur.Text = "l'email est requis";
+            {
+                tblEmailErreur.Text = "l'email est requis"; 
+                erreur = true; 
+            }
             else
             {
                 if (Validation.validerEmail(tbxEmail.Text))
@@ -65,7 +84,7 @@ namespace GestionProjetClient.dialogues
 
             if(this.ContentDialog_PrimaryButtonClick != null)
             {
-                if (tblAdresseErreur.Text == "" && tblEmailErreur.Text == "" && tblNomErreur.Text == "" && tblTelephoneErreur.Text == "")
+                if (!erreur)
                 {
                     Client client = new Client(0,tbxNom.Text,tbxAdresse.Text,tbxtelephone.Text,tbxEmail.Text);
 

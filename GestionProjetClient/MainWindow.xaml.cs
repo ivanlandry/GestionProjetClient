@@ -1,5 +1,6 @@
 using GestionProjetClient.Classes;
 using GestionProjetClient.Pages;
+using GestionProjetClient.Modification;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -58,6 +59,15 @@ namespace GestionProjetClient
                     break;
                 case "listeEmploye":
                     mainFrame.Navigate(typeof(PageListeEmploye));
+                    break;
+                case "modificationEmploye":
+                    mainFrame.Navigate(typeof(PageZoomEmploye));
+                    break;
+                case "modificationClient":
+                    mainFrame.Navigate(typeof(PageZoomClients));
+                    break;
+                case "modificationProjet":
+                    mainFrame.Navigate(typeof(PageZoomProjet));
                     break;
                 case "connexion":
                     if (Classes.Session.Statut)

@@ -15,7 +15,7 @@
 
             <TextBlock FontSize="25" Margin="20 20 0 20">Clients</TextBlock>
 
-            <GridView x:Name="gdvClients" Margin="0 20 0 0" ItemClick="gdvClients_ItemClick" IsItemClickEnabled="True">
+            <GridView x:Name="gdvClients" SelectionChanged="gdvClients_SelectionChanged" Margin="0 20 0 0" ItemClick="gdvClients_ItemClick" IsItemClickEnabled="True">
                
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">

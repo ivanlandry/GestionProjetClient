@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="GestionProjetClient.Modification.PageZoomClients"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GestionProjetClient.Modification"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel x:Name="mainpanel" Background="Pink">
+            <Grid Padding="30" x:Name="mainGrid" Background="Aqua">
+
+                <!--LIGNE-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--COLUMNE-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--TITRE-->
+                <TextBlock  Text="Modifier d'un client" 
+                            Margin="15" 
+                            FontSize="40" 
+                            FontFamily="Terminal" 
+                            Grid.ColumnSpan="2" 
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"/>
+                
+                    <TextBlock Grid.Row="0" x:Name="tbxIdentifientModifier" VerticalAlignment="Top"/>
+                
+
+                <StackPanel Grid.Row="1" Padding="20">
+                    <TextBox x:Name="tbxNomModifier" Header="NomModifier" Margin="10 10 10 10"></TextBox>
+                    <TextBlock x:Name="tblNomModifierErreur" Foreground="Red"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Padding="20">
+                    <TextBox x:Name="tbxAdresseModifier" Header="AdresseModifier" Margin="10 10 10 10"></TextBox>
+                    <TextBlock x:Name="tblAdresseModifierErreur" Foreground="Red"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Padding="20">
+                    <TextBox x:Name="tbxtelephoneModifier" Header="TelephoneModifier" Margin="10 10 10 10"></TextBox>
+                    <TextBlock x:Name="tblTelephoneErreurModifier" Foreground="Red"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Padding="20">
+                    <TextBox x:Name="tbxEmailModifier" Header="EmailModifier" Margin="10 10 10 10"></TextBox>
+                    <TextBlock x:Name="tblEmailErreurModifier" Foreground="Red"></TextBlock>
+                </StackPanel>
+
+                <Button x:Name="btModifier" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" Background="DarkSalmon" Click="btModifier_Click">
+                    <TextBlock Foreground="Aquamarine">Modifier</TextBlock>
+                </Button>
+                <TextBlock x:Name="tblTexte" FontSize="20"/>
+            </Grid>
+            
+        </StackPanel>
+
+    </ScrollViewer>
+</Page>

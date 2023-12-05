@@ -14,6 +14,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using GestionProjetClient.Classes;
+using GestionProjetClient.dialogues;
+using GestionProjetClient.Modification;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,14 +40,52 @@ namespace GestionProjetClient.Pages
             gdvEmployes.ItemsSource = this.listEmployes;
         }
 
-        private void ajouterEmploye_Click(object sender, RoutedEventArgs e)
+        private async void ajouterEmploye_Click(object sender, RoutedEventArgs e)
         {
+            AjouterEmployeDialogue dialogue = new AjouterEmployeDialogue();
 
+            dialogue.XamlRoot = rootEmploye.XamlRoot;
+            dialogue.Title = "Nouveau employe";
+            dialogue.PrimaryButtonText = "Creer";
+            dialogue.CloseButtonText = "fermer";
+            dialogue.DefaultButton = ContentDialogButton.Primary;
+
+            ContentDialogResult resultat = await dialogue.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                dialogue.Closing += Dialogue_Closing;
+
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = rootEmploye.XamlRoot;
+                dialog.Title = "Ajout";
+                dialog.CloseButtonText = "OK";
+                dialog.Content = "ajout réussi!";
+
+                var result = await dialog.ShowAsync();
+
+                this.Frame.Navigate(typeof(PageListeEmploye));
+            }
+        }
+
+        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            args.Cancel = false;
         }
 
         private void gdvEmployes_ItemClick(object sender, ItemClickEventArgs e)
         {
+            try
+            {
+                this.Frame.Navigate(typeof(PageZoomEmploye), listEmployes[gdvEmployes.SelectedIndex]);
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(e);
+
+
+            }
         }
     }
 }
