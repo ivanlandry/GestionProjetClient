@@ -10,18 +10,7 @@ namespace GestionProjetClient.Classes
 {
     internal class Employe : INotifyPropertyChanged
     {
-        //private string matricule;
-        //private string nom;
-        //private string prenom;
-        //private DateTime dateNaissance;
-        //private DateTime dateEmbauche;
-        //private string email;
-        //private string adresse;
-        //private double tauxHoraire;
-        //private string photo;
-        //private string statut;
-        //private double nbHeure;
-
+       
          string matricule;
          string nom;
          string prenom;
@@ -40,11 +29,11 @@ namespace GestionProjetClient.Classes
             this.Nom = nom;
             this.Prenom = prenom;
             this.DateNaissance = DateTime.TryParse(dateNaissance, out DateTime parsedDateNaissance) ? parsedDateNaissance : DateTime.MinValue;
-            //this.DateNaissance = dateNaissance;
+         
             this.Email = email;
             this.Adresse = adresse;
             this.DateEmbauche = DateTime.TryParse(dateEmbauche, out DateTime parsedDateEmbauche) ? parsedDateEmbauche : DateTime.MinValue;
-            //this.DateEmbauche = dateEmbauche;
+            
             this.TauxHoraire = double.TryParse(tauxHoraire, out double parsedTauxHoraire) ? parsedTauxHoraire : 0.0;
             this.Photo = photo;
             this.Statut = statut;
@@ -82,6 +71,11 @@ namespace GestionProjetClient.Classes
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        }
+
+        public string ToStringTextBox()
+        {
+            return $"{this.Matricule},{this.Nom} {this.Prenom}";
         }
     }
 }

@@ -54,7 +54,7 @@ namespace GestionProjetClient.Pages
 
             foreach (var item in Singleton.getInstance().getEmployes())
             {
-                this.listEmployes.Add(item.ToString());
+                this.listEmployes.Add(item.ToStringTextBox());
             }
             tbxEmploye.ItemsSource = this.listEmployes;
            
