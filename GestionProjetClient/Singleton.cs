@@ -166,6 +166,64 @@ namespace GestionProjetClient
 
             return projets;
         }
+        // assigner un employé a un projet
+        public string assignerProjetEmploye(string numeroProjet,string matriculeEmploye,double nbHeure)
+        {
+            
+            try
+            {
+                MySqlCommand command = new MySqlCommand("AssignerEmployeAProjetEnCours");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("p_numeroProjet", numeroProjet);
+                command.Parameters.AddWithValue("p_matriculeEmploye", matriculeEmploye);
+                command.Parameters.AddWithValue("p_nbHeureTravaille", nbHeure);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+
+                return "";
+            }
+            catch (MySqlException e)
+            {
+                con.Close();
+                return e.Message;
+            }
+        }
+
+        public List<Array> afficherProjet(string numeroProjet)
+        {
+            MySqlCommand commande = new MySqlCommand("afficheEmployeProjet");
+            commande.Connection = con;
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
+            commande.Parameters.AddWithValue("_numeroProjet", numeroProjet);
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            List<Array> employes = new List<Array>();
+
+            while (r.Read())
+            {
+                double salaireTotal = Convert.ToDouble(r["tauxHoraire"])*Convert.ToDouble(r["nbHeureTravaille"]);
+
+                KeyValuePair<string, string>[] employe = new KeyValuePair<string, string>[] {
+                    new KeyValuePair<string, string>("Nom",r["nomEmploye"].ToString()),
+                    new KeyValuePair<string, string>("Matricule",r["matriculeEmploye"].ToString()),
+                    new KeyValuePair<string, string>("Prenom",r["prenomEmploye"].ToString()),
+                    new KeyValuePair<string, string>("Nombre d'heures travaillés",r["nbHeureTravaille"].ToString()),
+                    new KeyValuePair<string, string>("Taux horaires",r["tauxHoraire"].ToString()),
+                    new KeyValuePair<string, string>("salaire a payer",salaireTotal.ToString())
+                };
+
+                employes.Add(employe);
+            }
+            con.Close();
+
+            return employes;
+        }
 
         public void ajouterProjet(Projet projet)
         {

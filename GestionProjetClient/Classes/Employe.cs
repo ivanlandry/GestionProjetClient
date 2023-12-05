@@ -55,5 +55,10 @@ namespace GestionProjetClient.Classes
             else
                 return true;
         }
+
+        public override string ToString()
+        {
+            return $"{this.Matricule},{this.Nom} {this.Prenom}";
+        }
     }
 }

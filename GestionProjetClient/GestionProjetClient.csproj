@@ -18,6 +18,7 @@
     <None Remove="Pages\PageListeClients.xaml" />
     <None Remove="Pages\PageListeEmploye.xaml" />
     <None Remove="Pages\PageListeProjets.xaml" />
+    <None Remove="Pages\ZoomProjet.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,4 +85,10 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Pages\ZoomProjet.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Pages\ZoomProjet.xaml" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="GestionProjetClient.Pages.ZoomProjet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GestionProjetClient.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+   
+        <ScrollViewer  x:Name="rootZoomProjet">
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock  FontSize="25" Margin="20 10 10 10" FontWeight="Bold">Ajouter un employé au projet</TextBlock>
+
+            <Grid Margin="20 10 10 10" x:Name="blockAjouterEmploye">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                    <AutoSuggestBox x:Name="tbxEmploye" Header="Ajouter un employé" QueryIcon="Find" TextChanged="tbxEmploye_TextChanged" ></AutoSuggestBox>
+                    <TextBlock x:Name="tbxEmployeErreur" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                    <TextBox  Header="Nombre d'heures" x:Name="nbHeureTravaille"></TextBox>
+                    <TextBlock x:Name="nbHeureTravailleErreur" Foreground="red"></TextBlock>
+                </StackPanel>    
+                
+                <Button HorizontalAlignment="Stretch" Margin="0 7 0 0" Grid.Row="0" Grid.Column="2" x:Name="btnAjouterEmploye" Background="CadetBlue" Click="btnAjouterEmploye_Click">Ajouter</Button>
+
+             </Grid>
+                
+                <TextBlock x:Name="numero" FontSize="25" Margin="20 10 10 10" FontWeight="Bold"></TextBlock>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Header="Titre" x:Name="titre" Grid.Row="0" Grid.Column="0" IsEnabled="False"/>
+                    <TextBox Header="Date de début" x:Name="dateDebut" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+                    <TextBox Header="Budget" Grid.Row="0" x:Name="budget" Grid.Column="2" IsEnabled="False"/>
+                    <TextBox Header="Nombre d'employés" x:Name="nbEmploye" Grid.Row="0" Grid.Column="3" IsEnabled="False"/>
+
+                    <TextBox Header="Client" x:Name="client" Grid.Row="1" Grid.Column="0" IsEnabled="False"></TextBox>
+                    <ComboBox Header="Statut" x:Name="statut" Grid.Row="1" Grid.Column="1" IsEnabled="False">
+                        <x:String>termine</x:String>
+                        <x:String>en cours</x:String>
+                    </ComboBox>
+                    <TextBox Header="Description" x:Name="description" Grid.Row="1" Grid.Column="2" IsEnabled="False"></TextBox>
+                    <TextBox Header="Total des salaires" x:Name="totalSalaire" Grid.Row="1" Grid.Column="3" IsEnabled="False"></TextBox>
+                
+            </Grid>
+
+           
+
+            <TextBlock FontSize="25" Margin="20 20 10 20" FontWeight="Bold">Liste des employés</TextBlock>
+
+            <Grid x:Name="gvdEmployesDuProjet">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Line X1="0" Y1="0" X2="{Binding Window.Current }" Y2="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stroke="Black" StrokeThickness="2"/>
+        </StackPanel>
+      
+    </ScrollViewer>
+    
+</Page>

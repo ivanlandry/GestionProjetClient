@@ -35,7 +35,7 @@
 
             </GridView>
 
-            <TextBlock FontSize="25" Margin="20 0 0 20">Projets terminés</TextBlock>
+            
         </StackPanel>
     </ScrollViewer>
 </Page>

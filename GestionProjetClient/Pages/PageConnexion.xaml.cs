@@ -107,6 +107,7 @@ namespace GestionProjetClient.Pages
                 
                 if (this.adminExist)
                 {
+                   
                     bool result = Singleton.getInstance().connexion(nomUtilisateur, motDePasse);
 
                     if (result)

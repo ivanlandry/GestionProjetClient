@@ -30,7 +30,7 @@ namespace GestionProjetClient.dialogues
             foreach (var item in Singleton.getInstance().getClients())
             {
                 this.listClients.Add(item.ToString());
-            }
+            } 
             dateDebut.Date = DateTime.Now;
 
             tbxClient.ItemsSource = this.listClients;

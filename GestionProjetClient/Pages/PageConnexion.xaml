@@ -18,7 +18,7 @@
 
             <PasswordBox x:Name="tbxMotDePasse" Header="Mot de passe" Margin="20 30 20 0"></PasswordBox>
             <TextBlock x:Name="tblMotDePasseErreur" Foreground="Red" Margin="20 0 20 0"></TextBlock>
-
+           
             <Button x:Name="btnConnexion" Click="btnConnexion_Click" Margin="20 30 20 0" HorizontalAlignment="Stretch" Background="CadetBlue">Se connecter</Button>
             
         </StackPanel>

@@ -41,9 +41,10 @@ namespace GestionProjetClient.Pages
      
         }
 
+       
         private void gdvProjets_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
+        { 
+            this.Frame.Navigate(typeof(ZoomProjet), e.ClickedItem as Projet);
         }
 
         private async void ajouterProjet_Click(object sender, RoutedEventArgs e)
