@@ -10,8 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <StackPanel x:Name="mainpanel" Background="Pink">
-            <Grid Padding="30" x:Name="mainGrid" Background="Aqua">
+        <StackPanel x:Name="mainpanel">
+            <Grid Padding="30" x:Name="mainGrid">
 
                 <!--LIGNE-->
                 <Grid.RowDefinitions>
@@ -60,7 +60,7 @@
                     <TextBlock x:Name="tblEmailErreurModifier" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <Button x:Name="btModifier" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" Background="DarkSalmon" Click="btModifier_Click">
+                <Button x:Name="btModifier" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" Background="CadetBlue" Click="btModifier_Click">
                     <TextBlock Foreground="Aquamarine">Modifier</TextBlock>
                 </Button>
                 <TextBlock x:Name="tblTexte" FontSize="20"/>

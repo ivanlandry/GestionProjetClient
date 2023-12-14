@@ -15,7 +15,8 @@ using Windows.Media.Capture;
 using Windows.Media.Protection.PlayReady;
 using Client = GestionProjetClient.Classes.Client;
 using Session = GestionProjetClient.Classes.Session;
-
+using Projet = GestionProjetClient.Classes.Projet;
+using Employe = GestionProjetClient.Classes.Employe;
 namespace GestionProjetClient
 {
     class Singleton

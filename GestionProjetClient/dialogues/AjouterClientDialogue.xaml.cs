@@ -25,6 +25,8 @@ namespace GestionProjetClient.dialogues
         public AjouterClientDialogue()
         {
             this.InitializeComponent();
+
+
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

@@ -56,6 +56,7 @@ namespace GestionProjetClient.Pages
             dialogue.PrimaryButtonText = "Creer";
             dialogue.CloseButtonText = "fermer";
             dialogue.DefaultButton = ContentDialogButton.Primary;
+            //dialogue.C = ContentDialogButton.Secondary;
 
             ContentDialogResult resultat = await dialogue.ShowAsync();
 
@@ -73,6 +74,10 @@ namespace GestionProjetClient.Pages
 
                 this.Frame.Navigate(typeof(PageListeProjets));
             }
+            //if(resultat == ContentDialogButton.Secondary)
+            //{
+            //    dialogue.Closing += Dialogue_Closing;
+            //}
 
         }
 

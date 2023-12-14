@@ -30,7 +30,9 @@ namespace GestionProjetClient.Pages
         private ObservableCollection<Employe> listEmployes = null;
         public PageListeEmploye()
         {
+
             this.InitializeComponent();
+
             if (!Session.Statut)
                 ajouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             else
@@ -42,6 +44,7 @@ namespace GestionProjetClient.Pages
 
         private async void ajouterEmploye_Click(object sender, RoutedEventArgs e)
         {
+
             AjouterEmployeDialogue dialogue = new AjouterEmployeDialogue();
 
             dialogue.XamlRoot = rootEmploye.XamlRoot;
@@ -54,6 +57,7 @@ namespace GestionProjetClient.Pages
 
             if (resultat == ContentDialogResult.Primary)
             {
+
                 dialogue.Closing += Dialogue_Closing;
 
                 ContentDialog dialog = new ContentDialog();
@@ -65,6 +69,12 @@ namespace GestionProjetClient.Pages
                 var result = await dialog.ShowAsync();
 
                 this.Frame.Navigate(typeof(PageListeEmploye));
+            }
+            else
+            {
+                dialogue.Closing += Dialogue_Closing;
+                this.Frame.Navigate(typeof(PageListeEmploye));
+
             }
         }
 

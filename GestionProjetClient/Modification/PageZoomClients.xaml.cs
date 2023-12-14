@@ -28,6 +28,21 @@ namespace GestionProjetClient.Modification
         public PageZoomClients()
         {
             this.InitializeComponent();
+
+            if (!Session.Statut)
+            {
+                tbxNomModifier.IsEnabled = true;
+                tbxAdresseModifier.IsEnabled = true;
+                tbxtelephoneModifier.IsEnabled = true;
+                tbxEmailModifier.IsEnabled = true;
+                
+
+                btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            }
+            else
+            {
+                btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -87,7 +102,7 @@ namespace GestionProjetClient.Modification
                         tblTelephoneErreurModifier.Text = "Numéro invalide invalide";
                         pasValide = true;
                     }
-                        
+
                 }
 
                 if (tbxEmailModifier.Text == "")
@@ -104,9 +119,9 @@ namespace GestionProjetClient.Modification
                     else
                     {
                         tblEmailErreurModifier.Text = "Adresse email invalide";
-                        pasValide=true;
+                        pasValide = true;
                     }
-                        
+
                 }
                 if (this.btModifier_Click != null)
                 {
@@ -158,7 +173,7 @@ namespace GestionProjetClient.Modification
                     }
                     else { }
                 }
-                        
+
             }
             catch (Exception ex)
             {

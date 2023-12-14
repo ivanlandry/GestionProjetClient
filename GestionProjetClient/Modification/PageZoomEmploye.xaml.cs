@@ -17,6 +17,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml.Media.Imaging;
+using MySqlX.XDevAPI;
+using Session = GestionProjetClient.Classes.Session;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +35,26 @@ namespace GestionProjetClient.Modification
         public PageZoomEmploye()
         {
             this.InitializeComponent();
+
+            if (!Session.Statut)
+            {
+                tbxNomModifier.IsEnabled = true;
+                tbxPrenomModifier.IsEnabled = true;
+                tbxDateNaissance.IsEnabled = true;
+                tbxDateEmbauche.IsEnabled = true;
+                tbxEmail.IsEnabled = true;
+                tbxAdresse.IsEnabled = true;
+                tbxTauxHoraire.IsEnabled = true;
+                tbxPhoto.IsEnabled = true;
+                tbxStatut.IsEnabled = true;
+                tbxNbHeure.IsEnabled = true;
+
+                btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            }
+            else
+            {
+                btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -63,6 +85,16 @@ namespace GestionProjetClient.Modification
                 //Singleton.getInstance().getEmployes()
                 //BitmapImage Photo = new BitmapImage(tbxPhoto);
                 // Employe employe14 = new Employe()
+
+
+
+                //if (!Session.Statut)
+                //    btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                //else
+                //    btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+
+                //this.employes = Singleton.getInstance().getEmployes();
+                //btModifier.ItemsSource = this.employes;
 
             }
         }
