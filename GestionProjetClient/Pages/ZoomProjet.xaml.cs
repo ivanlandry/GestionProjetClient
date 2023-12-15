@@ -33,7 +33,7 @@ namespace GestionProjetClient.Pages
         {
             this.InitializeComponent();
 
-            if (!Session.Statut)
+            if (Session.Statut)
             {
                 titre.IsEnabled = true;
                 budget.IsEnabled = true;
@@ -44,11 +44,11 @@ namespace GestionProjetClient.Pages
                 totalSalaire.IsEnabled = true;
                 dateDebut.IsEnabled = true;
 
-               // blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             }
             else
             {
-                blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+                blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             }
       
 

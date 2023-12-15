@@ -103,15 +103,28 @@ namespace GestionProjetClient.dialogues
 
             if (this.ContentDialog_PrimaryButtonClick != null)
             {
-                if(!erreur)
+                if (!erreur)
                 {
                     string[] tabIdClient = tbxClient.Text.Split('-');
-                
-                    string[] tabDateDebut = dateDebut.Date.ToString().Split(' ');
-             
-                    Projet projet = new Projet("0",tbxTitre.Text, tabDateDebut[0], tbxDescription.Text,Convert.ToDouble(tbxBudget.Text),cbbNbEmploye.SelectedItem.ToString(), tabIdClient[0], "en cours",0);
 
+                    string[] tabDateDebut = dateDebut.Date.ToString().Split(' ');
+
+                    //Projet projet = new Projet { "0", tbxTitre.Text, tabDateDebut[0], tbxDescription.Text, Convert.ToDouble(tbxBudget.Text), cbbNbEmploye.SelectedItem.ToString(), tabIdClient[0], "en cours", 0 };
+                    Projet projet = new Projet
+
+                    {
+                        Numero = "0",
+                        Titre = tbxTitre.Text,
+                        DateDebut = tabDateDebut[0],
+                        Description = tbxDescription.Text,
+                        Budget = Convert.ToDouble(tbxBudget.Text),
+                        NbEmploye = cbbNbEmploye.SelectedItem.ToString(),
+                        IdClient = tabIdClient[0],
+                        Statut = "en cours",
+                        TotalSalaireAPayer = 0
+                    };
                     Singleton.getInstance().ajouterProjet(projet);
+                
                 }
                 else
                 {
