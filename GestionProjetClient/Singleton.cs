@@ -259,6 +259,30 @@ namespace GestionProjetClient
             }
         }
 
+        public void modifierProjet(string numeroProjet,string titre,string description,double budget,string statut)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("modifierProjet");
+                command.Connection = con;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("numeroP", numeroProjet);
+                command.Parameters.AddWithValue("titre", titre);
+                command.Parameters.AddWithValue("description", description);
+                command.Parameters.AddWithValue("budget", budget);
+                command.Parameters.AddWithValue("statut", statut);
+
+                con.Open();
+                command.Prepare();
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
         // clients
 
         public void ajouterClient(Client client)

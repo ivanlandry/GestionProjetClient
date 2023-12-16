@@ -35,19 +35,12 @@ namespace GestionProjetClient.Pages
 
             if (!Session.Statut)
             {
-                titre.IsEnabled = true;
-                budget.IsEnabled = true;
-                nbEmploye.IsEnabled = true;
-                description.IsEnabled = true;
-                client.IsEnabled = true;
-                statut.IsEnabled = true;
-                totalSalaire.IsEnabled = true;
-                dateDebut.IsEnabled = true;
-
-               // blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                modifier.IsEnabled = false;
+                blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             }
             else
             {
+                modifier.IsEnabled = true;
                 blockAjouterEmploye.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
             }
       
@@ -88,8 +81,7 @@ namespace GestionProjetClient.Pages
                         if (i == 0)
                         {
                             txbValue.Text = kvp.Key;
-                            txbValue.FontWeight = FontWeights.Bold;
-                          
+                            txbValue.FontWeight = FontWeights.Bold;   
                         }
                         else
                         {
@@ -106,12 +98,13 @@ namespace GestionProjetClient.Pages
                 }
 
                 numero.Text = "Details du projet : " + this.projet.Numero;
-                titre.Text = this.projet.Titre;
-                budget.Text = this.projet.Budget.ToString();
+                tbxTitre.Text = this.projet.Titre;
+                tbxBudget.Text = this.projet.Budget.ToString();
                 nbEmploye.Text = this.projet.NbEmploye;
-                description.Text = this.projet.Description;
+                tbxDescription.Text = this.projet.Description;
                 client.Text = this.projet.IdClient;
-                statut.Text = this.projet.Statut;
+                cbbStatut.Text = this.projet.Statut;
+                dateDebut.Text = this.projet.DateDebut;
                 totalSalaire.Text = this.projet.TotalSalaireAPayer.ToString();
             }
         }
@@ -181,6 +174,64 @@ namespace GestionProjetClient.Pages
 
                 this.Frame.Navigate(typeof(ZoomProjet),this.projet);
             }
+        }
+
+        private async void modifier_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (tbxDescription.Text == "")
+            {
+                tblDescriptionErreur.Text = " la description est requise"; 
+            }
+            else
+            {
+                tblDescriptionErreur.Text = "";
+            }
+
+            if (tbxTitre.Text == "")
+            {
+                tblTitreErreur.Text = " le titre est requis";
+               
+            }
+            else
+            {
+                tblTitreErreur.Text = "";
+            }
+
+
+            if (tbxBudget.Text == "")
+            {
+                tblBudgetErreur.Text = "Le budget est requis";
+               
+            }
+            else
+            {
+                if (!Validation.validerNombre(tbxBudget.Text))
+                    tblBudgetErreur.Text = "Budget invalide";
+                else
+                    tblBudgetErreur.Text = "";
+            }
+
+            if(tblTitreErreur.Text=="" && tblBudgetErreur.Text=="" && tblDescriptionErreur.Text == "")
+            {
+                Singleton.getInstance().modifierProjet(this.projet.Numero,tbxTitre.Text,tbxDescription.Text,Convert.ToDouble(tbxBudget.Text),cbbStatut.SelectedValue.ToString());
+
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = rootZoomProjet.XamlRoot;
+                dialog.Title = "Reponse";
+                dialog.CloseButtonText = "OK";
+                dialog.Content ="Modification réussit";
+
+                var result = await dialog.ShowAsync();
+
+                this.projet.Titre = tbxTitre.Text;
+                this.projet.Description = tbxDescription.Text;
+                this.projet.Budget =Convert.ToDouble(tbxBudget.Text);
+                this.projet.Statut = cbbStatut.SelectedValue.ToString();
+                this.Frame.Navigate(typeof(ZoomProjet), this.projet);
+            }
+
+
         }
     }
 }

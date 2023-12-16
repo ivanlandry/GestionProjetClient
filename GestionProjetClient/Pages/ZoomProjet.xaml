@@ -41,39 +41,72 @@
                 
                 <TextBlock x:Name="numero" FontSize="25" Margin="20 10 10 10" FontWeight="Bold"></TextBlock>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <TextBox Header="Titre" x:Name="titre" Grid.Row="0" Grid.Column="0" IsEnabled="False"/>
-                    <TextBox Header="Date de début" x:Name="dateDebut" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
-                    <TextBox Header="Budget" Grid.Row="0" x:Name="budget" Grid.Column="2" IsEnabled="False"/>
-                    <TextBox Header="Nombre d'employés" x:Name="nbEmploye" Grid.Row="0" Grid.Column="3" IsEnabled="False"/>
+                <StackPanel Grid.Row="0" Grid.Column="0"  Margin="0 0 0 15" Orientation="Vertical">
+                    <TextBox  Header="Titre" x:Name="tbxTitre" />
+                    <TextBlock Foreground="Red" x:Name="tblTitreErreur"></TextBlock>
+                </StackPanel>
 
-                    <TextBox Header="Client" x:Name="client" Grid.Row="1" Grid.Column="0" IsEnabled="False"></TextBox>
-                    <ComboBox Header="Statut" x:Name="statut" Grid.Row="1" Grid.Column="1" IsEnabled="False">
+                <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Vertical"  Margin="0 0 0 15">
+                    <TextBox  Header="Date de début" x:Name="dateDebut" IsEnabled="False"/>
+                    
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical"  Margin="0 0 0 15">
+                    <TextBox Header="Budget" x:Name="tbxBudget" Grid.Row="0" Grid.Column="2" />
+                    <TextBlock Foreground="Red" x:Name="tblBudgetErreur"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Vertical" Margin="0 0 0 15">
+                    <TextBox Header="Nombre d'employés" x:Name="nbEmploye" IsEnabled="False"/>
+                    
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                    <TextBox  Header="Client" x:Name="client" IsEnabled="False"></TextBox>
+                    
+                </StackPanel>
+
+
+                <StackPanel  Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                    <ComboBox  Header="Statut" x:Name="cbbStatut" SelectedIndex="1">
                         <x:String>termine</x:String>
                         <x:String>en cours</x:String>
                     </ComboBox>
-                    <TextBox Header="Description" x:Name="description" Grid.Row="1" Grid.Column="2" IsEnabled="False"></TextBox>
-                    <TextBox Header="Total des salaires" x:Name="totalSalaire" Grid.Row="1" Grid.Column="3" IsEnabled="False"></TextBox>
+                    
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+                    <TextBox Header="Description" x:Name="tbxDescription"></TextBox>
+                    <TextBlock Foreground="Red" x:Name="tblDescriptionErreur"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+                    <TextBox Header="Total des salaires" x:Name="totalSalaire" IsEnabled="False"></TextBox>
+                </StackPanel>
+
                 
+                <Button Margin="0 15 10 0" x:Name="modifier" Click="modifier_Click"  HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="3" Background="CadetBlue">Modifier</Button>
             </Grid>
 
-           
 
             <TextBlock FontSize="25" Margin="20 20 10 20" FontWeight="Bold">Liste des employés</TextBlock>
-
+            
             <Grid x:Name="gvdEmployesDuProjet">
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
