@@ -7,48 +7,96 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    CloseButtonClick="ContentDialog_CloseButtonClick"
+    >
 
     <Grid>
         <ScrollViewer>
-            <StackPanel Orientation="Vertical">
+            <StackPanel x:Name="mainpanel" Orientation="Horizontal">
+                <Grid Padding="0" x:Name="mainGrid">
 
-                <!--<TextBox x:Name="tbxMatricule" Header="Matricule"></TextBox>
+                    <!--LIGNE-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--COLUMNE-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--<TextBox x:Name="tbxMatricule" Header="Matricule"></TextBox>
                 <TextBlock x:Name="tblMatriculeErreur"></TextBlock>-->
-                
-                
-                <TextBox x:Name="tbxNom" Header="Nom" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblNomErreur" Foreground="Red"></TextBlock>
-                
-                <TextBox x:Name="tbxPrenom" Header="Prenom" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblPrenomErreur" Foreground="red"></TextBlock>
-
-                <DatePicker x:Name="tbxDateNaissance" Header="Date Naissance" Margin="10 10 10 10"></DatePicker>
-                <TextBlock x:Name="tblDateNaissanceErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxEmail" Header="Email" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblEmailErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxAdresse" Header="Adresse" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblAdresseErreur" Foreground="Red"></TextBlock>
-
-                <DatePicker x:Name="tbxDateEmbauche" Header="Date Embauche" Margin="10 10 10 10"></DatePicker>
-                <TextBlock x:Name="tblDateEmbaucheErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxTauxHoraire" Header="Taux Horaire" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblTauxHoraireErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxPhoto" Header="Photo" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxStatut" Header="Statut" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblStatutErreur" Foreground="Red"></TextBlock>
-
-                <TextBox x:Name="tbxNbHeure" Header="NbHeure" Margin="10 10 10 10"></TextBox>
-                <TextBlock x:Name="tblNbHeureErreur" Foreground="Red"></TextBlock>
 
 
-                <TextBlock x:Name="coucou" ></TextBlock>
+                    <StackPanel Grid.Row="1" Grid.Column="0"  Padding="5">
+                        <TextBox x:Name="tbxNom" Header="Nom" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblNomErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Padding="5">
+                        <TextBox x:Name="tbxPrenom" Header="Prenom" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblPrenomErreur" Foreground="red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Padding="5">
+                        <DatePicker x:Name="tbxDateNaissance" Header="Date Naissance" MinWidth="200" Margin="10 10 10 10"></DatePicker>
+                        <TextBlock x:Name="tblDateNaissanceErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" Padding="5">
+                        <TextBox x:Name="tbxEmail" Header="Email" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblEmailErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1" Padding="5">
+                        <TextBox x:Name="tbxAdresse" Header="Adresse" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblAdresseErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Padding="5">
+                        <DatePicker x:Name="tbxDateEmbauche" Header="Date Embauche" MinWidth="200" Margin="10 10 10 10"></DatePicker>
+                        <TextBlock x:Name="tblDateEmbaucheErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Grid.Column="0" Padding="5">
+                        <TextBox x:Name="tbxTauxHoraire" Header="Taux Horaire" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblTauxHoraireErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Padding="5">
+                        <TextBox x:Name="tbxPhoto" Header="Photo" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <RadioButtons   x:Name="rastatut"
+                                    Grid.Row="8"
+                                    SelectedIndex="0"
+                                    MaxColumns="2"
+                                    SelectionChanged="rastatut_SelectionChanged">
+        
+                                    <x:String>Journalier</x:String>
+                                    <x:String>Permanent</x:String>
+                    </RadioButtons>
+                    
+                    <StackPanel Grid.Row="7" Grid.Column="0" Padding="5">
+                        <TextBox x:Name="tbxNbHeure" Header="NbHeure" MinWidth="200" Margin="10 10 10 10"></TextBox>
+                        <TextBlock x:Name="tblNbHeureErreur" Foreground="Red"></TextBlock>
+                    </StackPanel>
+
+                    <TextBlock x:Name="coucou" ></TextBlock>
+                </Grid>
 
             </StackPanel>
         </ScrollViewer>

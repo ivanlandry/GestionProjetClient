@@ -29,6 +29,7 @@
     <None Remove="Modification\PageZoomEmploye.xaml" />
     <None Remove="Modification\PageZoomProjet.xaml" />
     <None Remove="Pages\PageConnexion.xaml" />
+    <None Remove="Pages\PageFichierCSV.xaml" />
     <None Remove="Pages\PageListeClients.xaml" />
     <None Remove="Pages\PageListeEmploye.xaml" />
     <None Remove="Pages\PageListeProjets.xaml" />
@@ -111,9 +112,12 @@
     <PRIResource Remove="NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Modification\PageZoomProjet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Remove="Modification\PageZoomProjet.xaml.cs" />
+    <Compile Remove="Pages\PageFichierCSV.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Modification\PageZoomProjet.xaml" />
+    <Page Remove="Pages\PageFichierCSV.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Modification\PageZoomClients.xaml">

@@ -16,6 +16,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using GestionProjetClient.dialogues;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +32,7 @@ namespace GestionProjetClient
         public MainWindow()
         {
             this.InitializeComponent();
-           
+            SingletomFen.getInstance().Fenetre = this;
             Singleton.getInstance().setWindow(this);
             Singleton.getInstance().setNavigationViewItemConnexion(connexion);
 
@@ -72,7 +73,7 @@ namespace GestionProjetClient
                     mainFrame.Navigate(typeof(PageZoomClients));
                     break;
                 case "modificationProjet":
-                    mainFrame.Navigate(typeof(PageZoomProjet));
+                    mainFrame.Navigate(typeof(ZoomProjet));
                     break;
                 case "connexion":
                     if (Classes.Session.Statut)

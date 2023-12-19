@@ -15,6 +15,9 @@ using Windows.Media.Capture;
 using Windows.Media.Protection.PlayReady;
 using Client = GestionProjetClient.Classes.Client;
 using Session = GestionProjetClient.Classes.Session;
+using Projet = GestionProjetClient.Classes.Projet;
+using Employe = GestionProjetClient.Classes.Employe;
+using System.Globalization;
 
 namespace GestionProjetClient
 {
@@ -23,7 +26,7 @@ namespace GestionProjetClient
         ObservableCollection<Employe> employes;
         ObservableCollection<Client> clients;
         ObservableCollection<Projet> projets;
-
+        ObservableCollection<Projet> listeProjet;
         static Singleton instance = null;
         Window window = null;
         NavigationViewItem navigationViewItemConnexion = null;
@@ -34,6 +37,8 @@ namespace GestionProjetClient
             employes = new ObservableCollection<Employe>();
             clients = new ObservableCollection<Client>();
             projets = new ObservableCollection<Projet>();
+            listeProjet = new ObservableCollection<Projet>();
+
 
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2023_420325ri_fabeq1;Uid=2204463;Pwd=2204463;");
 
@@ -152,27 +157,41 @@ namespace GestionProjetClient
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             projets.Clear();
-
+            Projet projet;
             while (r.Read())
             {
-                Projet projet = new Projet(
-                    r["numeroProjet"].ToString(),
-                    r["titre"].ToString(),
-                    r["dateDebut"].ToString(),
-                    r["description"].ToString(),
-                    Convert.ToDouble(r["budget"]),
-                    r["nbEmploye"].ToString(),
-                    r["idClient"].ToString(),
-                    r["statutProjet"].ToString(),
-                    Convert.ToDouble(r["totalSalaire"])
-                );
-                
+                //Projet projet = new Projet(
+                //    r["numeroProjet"].ToString(),
+                //    r["titre"].ToString(),
+                //    r["dateDebut"].ToString(),
+                //    r["description"].ToString(),
+                //    Convert.ToDouble(r["budget"]),
+                //    r["nbEmploye"].ToString(),
+                //    r["idClient"].ToString(),
+                //    r["statutProjet"].ToString(),
+                //    Convert.ToDouble(r["totalSalaire"])
+                //);
+                projet = new Projet
+
+                {
+                    Numero = r["numeroProjet"] as String,
+                    Titre = r["titre"] as String,
+                    DateDebut = r["dateDebut"] as String,
+                    Description = r["description"] as String,
+                    Budget = Convert.ToDouble(r["budget"]),
+                    NbEmploye = r["nbEmploye"] as String,
+                    IdClient = r["idClient"] as String,
+                    Statut = r["statutProjet"] as String,
+                    TotalSalaireAPayer = Convert.ToDouble(r["totalSalaire"])
+                };
+
                 projets.Add(projet);
             }
             con.Close();
 
             return projets;
         }
+
         // assigner un employé a un projet
         public string assignerProjetEmploye(string numeroProjet,string matriculeEmploye,double nbHeure)
         {
@@ -473,6 +492,56 @@ namespace GestionProjetClient
         public ObservableCollection<Employe> getPhoto()
         {
             return employes;
+        }
+
+
+
+        public ObservableCollection<Projet> getListeProjets()
+        {
+            listeProjet.Clear();
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("afficheListeProjet");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                Projet projetB;
+                //listeProjet.Clear();
+
+                while (r.Read())
+                {
+                    projetB = new Projet
+                        
+                    {                        
+                        Numero              = r["numero"] as String,
+                        Titre               = r["titre"] as String,
+                        DateDebut           = r["dateDebut"] as String,
+                        Description         = r["description"] as String,
+                        Budget              = Convert.ToDouble(r["budget"]),
+                        NbEmploye           = r["nbEmploye"] as String,
+                        IdClient            = r["idClient"] as String,
+                        Statut              = r["statut"] as String,
+                        TotalSalaireAPayer  = Convert.ToDouble(r["totalSalaireAPayer"])
+                    };
+
+                    //ajout dans la liste de produit
+                    listeProjet.Add(projetB);
+                }
+                r.Close();
+                con.Close();
+            }
+            //gestion d'erreur
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            return listeProjet;
         }
 
 

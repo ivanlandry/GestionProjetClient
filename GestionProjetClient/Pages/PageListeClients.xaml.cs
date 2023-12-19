@@ -27,17 +27,16 @@ namespace GestionProjetClient.Pages
     /// </summary>
     public sealed partial class PageListeClients : Page
     {
-        //ObservableCollection<Client> listClients = Singleton.getInstance().getClients;
-        private ObservableCollection<Client> listClients=null;
+        private ObservableCollection<Client> listClients = null;
         public PageListeClients()
         {
             this.InitializeComponent();
 
-             if (!Session.Statut)
+            if (!Session.Statut)
                 ajouterClient.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
             else
                 ajouterClient.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-           
+
             this.listClients = Singleton.getInstance().getClients();
             gdvClients.ItemsSource = this.listClients;
         }
@@ -55,25 +54,24 @@ namespace GestionProjetClient.Pages
             ContentDialogResult resultat = await dialogue.ShowAsync();
 
             if (resultat == ContentDialogResult.Primary)
-            {       
-                    dialogue.Closing += Dialogue_Closing;
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = rootClient.XamlRoot;
+                dialog.Title = "Ajout";
+                dialog.CloseButtonText = "OK";
+                dialog.Content = "ajout réussi!";
 
-                    ContentDialog dialog = new ContentDialog();
-                    dialog.XamlRoot = rootClient.XamlRoot;
-                    dialog.Title = "Ajout";
-                    dialog.CloseButtonText = "OK";
-                    dialog.Content = "ajout réussi!";
+                var result = await dialog.ShowAsync();
 
-                    var result = await dialog.ShowAsync();
-
-                    this.Frame.Navigate(typeof(PageListeProjets));
+                this.Frame.Navigate(typeof(PageListeProjets));
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(PageListeProjets));
             }
         }
 
-        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
-        {
-            args.Cancel = false;
-        }
+        
 
         private void gdvClients_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -82,7 +80,6 @@ namespace GestionProjetClient.Pages
 
         private void gdvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (listClients.Count) > 0)
             try
             {
                 this.Frame.Navigate(typeof(PageZoomClients), listClients[gdvClients.SelectedIndex]);

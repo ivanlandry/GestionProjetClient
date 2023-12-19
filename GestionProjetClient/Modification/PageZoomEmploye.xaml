@@ -11,18 +11,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <StackPanel  x:Name="mainpanel" Background="Pink">
-            <Grid  Padding="30" x:Name="mainGrid" Background="Aqua">
+        <StackPanel  x:Name="mainpanel">
+            <Grid  Padding="30" x:Name="mainGrid">
 
                 <!--LIGNE-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -38,76 +41,94 @@
                             Margin="15" 
                             FontSize="40" 
                             FontFamily="Terminal" 
-                            Grid.ColumnSpan="3" 
+                            Grid.ColumnSpan="3"
                             FontWeight="SemiBold"
                             HorizontalAlignment="Center"/>
 
-                    <TextBlock x:Name="tbxMatriculeModifier"></TextBlock>
 
-                <GridView x:Name="AffichePhoto" SelectionChanged="AffichePhoto_SelectionChanged" ItemsSource="{x:Bind employes}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="local1:Employe">
-                            <GridViewItem>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="{x:Bind Photo, Mode=OneWay}"  Height="150" />
-                                </StackPanel>
-                            </GridViewItem>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                <TextBlock x:Name="tbxMatriculeModifier" 
+                           Grid.Column="0" 
+                           Grid.Row="0" 
+                           FontWeight="Bold" 
+                           FontSize="25" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="DarkOliveGreen">
+                    
+                </TextBlock>
+
+                <Image x:Name="ImageEmploye" Grid.Column="3" Grid.Row="0"  Height="150"/>
                 
-                
-                <StackPanel Grid.Row="1" Grid.Column="0" Padding="20">
+                <StackPanel Grid.Row="1" Grid.Column="0" Padding="2">
                     <TextBox x:Name="tbxNomModifier" Header="NomModifier" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblNomModifierErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Grid.Column="1" Padding="20">
+                <StackPanel Grid.Row="1" Grid.Column="1" Padding="2">
                     <TextBox x:Name="tbxPrenomModifier" Header="PrenomModifier" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblPrenomModifierErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.Column="0" Padding="20">
+                <StackPanel Grid.Row="3" Grid.Column="0" Padding="2">
                     <DatePicker x:Name="tbxDateNaissance" Header="Date Naissance" Margin="10 10 10 10"></DatePicker>
                     <TextBlock x:Name="tblDateNaissanceErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.Column="1" Padding="20">
+                <StackPanel Grid.Row="3" Grid.Column="1" Padding="2">
                     <DatePicker x:Name="tbxDateEmbauche" Header="Date Embauche" Margin="10 10 10 10"></DatePicker>
                     <TextBlock x:Name="tblDateEmbaucheErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="4" Grid.Column="0" Padding="20">
+                <StackPanel Grid.Row="4" Grid.Column="0" Padding="2">
                     <TextBox x:Name="tbxEmail" Header="EmailModifier" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblNomEmailErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="5" Grid.Column="0" Padding="20">
+                <StackPanel Grid.Row="4" Grid.Column="1" Padding="2">
                     <TextBox x:Name="tbxAdresse" Header="Adresse" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblAdresseErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="6" Grid.Column="0" Padding="20">
+                <StackPanel Grid.Row="5" Grid.Column="0" Padding="2">
                     <TextBox x:Name="tbxTauxHoraire" Header="Taux Horaire" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblTauxHoraireErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="6" Grid.Column="1" Padding="20">
+                <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Padding="2 -20">
                     <TextBox x:Name="tbxPhoto" Header="Photo" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="7" Grid.Column="0" Padding="20">
-                    <TextBox x:Name="tbxStatut" Header="Statut" Margin="10 10 10 10"></TextBox>
+                <StackPanel Grid.Row="1"
+                            Grid.Column="2"
+                            Padding="20"
+                            HorizontalAlignment="Center">
+                    
+                    <TextBlock  x:Name="tblStatutType" 
+                                Foreground="DarkOliveGreen" 
+                                FontWeight="Bold" 
+                                FontSize="25" >
+                        
+                    </TextBlock>
+                    
+                    <RadioButtons   x:Name="rastatut"
+                                    MaxColumns="2"
+                                    SelectionChanged="rastatut_SelectionChanged">
+
+                            <x:String>Journalier</x:String>
+                            <x:String>Permanent</x:String>
+                    </RadioButtons>
+                    
                     <TextBlock x:Name="tblStatutErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
+                
 
-                <StackPanel Grid.Row="7" Grid.Column="1" Padding="20">
+                <StackPanel Grid.Row="5" Grid.Column="1" Padding="2">
                     <TextBox x:Name="tbxNbHeure" Header="NbHeure" Margin="10 10 10 10"></TextBox>
                     <TextBlock x:Name="tblNbHeureErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <Button x:Name="btModifier" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontSize="10" Background="DarkSalmon" Click="btModifier_Click">
+                <Button x:Name="btModifier" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontSize="10" Background="CadetBlue" Click="btModifier_Click">
                     <TextBlock Foreground="Aquamarine">Modifier</TextBlock>
                 </Button>
                 <TextBlock x:Name="tblTexte" FontSize="20"/>

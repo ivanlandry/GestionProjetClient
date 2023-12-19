@@ -13,6 +13,12 @@
 
     <ScrollViewer>
         <StackPanel Orientation="Vertical" x:Name="rootProjet">
+            <StackPanel x:Name="mainpanel">
+                <StackPanel Orientation="Horizontal" >
+                    <Button x:Name="btSauvegardeFichierCsv" Click="btSauvegardeFichierCsv_Click">Ajout fichier CSV</Button>
+                </StackPanel>
+
+            </StackPanel>
             <Button x:Name="ajouterProjet" Click="ajouterProjet_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="CadetBlue" Margin="0 20 20 20">Nouveau</Button>
 
             <TextBlock FontSize="25" Margin="20 20 0 20">Liste des projets</TextBlock>
