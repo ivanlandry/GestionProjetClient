@@ -16,13 +16,15 @@
 
                 <!--LIGNE-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -49,7 +51,7 @@
                         <DataTemplate x:DataType="local1:Employe">
                             <GridViewItem>
                                 <StackPanel Orientation="Vertical">
-                                    <Image Source="{x:Bind Photo, Mode=OneWay}"  Height="150" />
+                                    <Image Source="{x:Bind Photo, Mode=OneWay}"  Height="100"/>
                                 </StackPanel>
                             </GridViewItem>
                         </DataTemplate>
@@ -97,10 +99,19 @@
                     <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Grid.Row="7" Grid.Column="0" Padding="20">
-                    <TextBox x:Name="tbxStatut" Header="Statut" Margin="10 10 10 10"></TextBox>
+                <StackPanel Grid.Row="7"
+                            Grid.Column="0">
+                    <TextBlock x:Name="tblStatutType" Foreground="DarkOliveGreen" FontSize="15"></TextBlock>
+                    <RadioButtons   x:Name="rastatut"
+                                    MaxColumns="2"
+                                    SelectionChanged="rastatut_SelectionChanged">
+
+                    <x:String>Journalier</x:String>
+                    <x:String>Permanent</x:String>
+                </RadioButtons>
                     <TextBlock x:Name="tblStatutErreur" Foreground="Red"></TextBlock>
                 </StackPanel>
+                
 
                 <StackPanel Grid.Row="7" Grid.Column="1" Padding="20">
                     <TextBox x:Name="tbxNbHeure" Header="NbHeure" Margin="10 10 10 10"></TextBox>

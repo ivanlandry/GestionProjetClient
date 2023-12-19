@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using GestionProjetClient.Classes;
 using MySql.Data.MySqlClient;
 using Microsoft.VisualBasic;
+using Org.BouncyCastle.Tls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,6 +24,7 @@ namespace GestionProjetClient.dialogues
 {
     public sealed partial class AjouterEmployeDialogue : ContentDialog
     {
+        string resultatRadioButton = "";
 
         public AjouterEmployeDialogue()
         {
@@ -73,20 +75,22 @@ namespace GestionProjetClient.dialogues
                 tblDateEmbaucheErreur.Text = "";
 
 
-            if (tbxEmail.Text == "")
-            {
-                tblEmailErreur.Text = "l'email est requis";
-                erreur = true;
-            }
-            else
-            {
-                if (Validation.validerEmail(tbxEmail.Text))
+            //if (tbxEmail.Text == "")
+            //{
+            //    tblEmailErreur.Text = "l'email est requis";
+            //    erreur = true;
+            //}
+            //else
+            //{
+                if (!Validation.validerEmail(tbxEmail.Text) || tbxEmail.Text == "")
                 {
-                    tblEmailErreur.Text = "";
+                    tblEmailErreur.Text = "Adresse email invalide";
+                    erreur = true;
                 }
                 else
-                    tblEmailErreur.Text = "Adresse email invalide";
-            }
+                    tblEmailErreur.Text = "";
+            
+            //}
 
             if (tbxAdresse.Text == "")
             {
@@ -94,22 +98,26 @@ namespace GestionProjetClient.dialogues
                 erreur = true;
             }
             else
-            { tblAdresseErreur.Text = ""; }
-
-            if (tbxTauxHoraire.Text == "")
-            {
-                tblTauxHoraireErreur.Text = "La tbxTauxHoraire est requis";
-                erreur = true;
+            { 
+                tblAdresseErreur.Text = ""; 
             }
-            else
-            {
-                if (Validation.validerTauxHoraire(Convert.ToDouble(tbxTauxHoraire.Text)))
+
+            //if (tbxTauxHoraire.Text == "")
+            //{
+            //    tblTauxHoraireErreur.Text = "La tbxTauxHoraire est requis";
+            //    erreur = true;
+            //}
+            //else
+            //{
+                if (tbxTauxHoraire.Text == "" || !Validation.validerTauxHoraire(Convert.ToDouble(tbxTauxHoraire.Text)))
                 {
-                    tblTauxHoraireErreur.Text = "";
+                    tblTauxHoraireErreur.Text = "Les taux horaire est invalide";
+                    erreur = true;
                 }
                 else
-                    tblTauxHoraireErreur.Text = "Les taux horaire est invalide";
-            }
+                    tblTauxHoraireErreur.Text = "";
+            //    tblTauxHoraireErreur.Text = "Les taux horaire est invalide";
+            //}
 
             if (tbxPhoto.Text == "")
             {
@@ -118,12 +126,7 @@ namespace GestionProjetClient.dialogues
             }
             else { tblPhotoErreur.Text = ""; }
 
-            //if (statut == "")
-            //{
-            //    tblStatutErreur.Text = "La tbxStatut est requis";
-            //    erreur = true;
-            //}
-            //else { tblStatutErreur.Text = ""; }
+            if(resultatRadioButton =="")
 
             if (tbxNbHeure.Text == "")
             {
@@ -134,23 +137,13 @@ namespace GestionProjetClient.dialogues
 
             string statut = string.Empty;
 
-            if (JournalierRadioButton.IsChecked == true)
-            {
-                statut = "Journalier";
-            }
-            else if (PermanentRadioButton.IsChecked == true)
-            {
-                statut = "Permanent";
-            }
-
-
             if (this.ContentDialog_PrimaryButtonClick != null)
             {
                 try
                 {
                     if (!erreur)
                     {
-                        Employe employe = new Employe("hg", tbxNom.Text, tbxPrenom.Text, tbxDateNaissance.Date.ToString("yyyy-MM-dd"), tbxEmail.Text, tbxAdresse.Text, tbxDateEmbauche.Date.ToString("yyyy-MM-dd"), tbxTauxHoraire.Text, tbxPhoto.Text, statut, tbxNbHeure.Text);
+                        Employe employe = new Employe("hg", tbxNom.Text, tbxPrenom.Text, tbxDateNaissance.Date.ToString("yyyy-MM-dd"), tbxEmail.Text, tbxAdresse.Text, tbxDateEmbauche.Date.ToString("yyyy-MM-dd"), tbxTauxHoraire.Text, tbxPhoto.Text, resultatRadioButton, tbxNbHeure.Text);
                         Singleton.getInstance().ajouterEmploye(employe);
                     }
                     else
@@ -173,29 +166,17 @@ namespace GestionProjetClient.dialogues
 
         }
 
+        private void rastatut_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(rastatut.SelectedItem != null)
+            {
+                resultatRadioButton = rastatut.SelectedItem.ToString();
+            }
+        }
 
 
 
-        //        private void statut_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //        {
-        //            CheckBox myCheckBox = new CheckBox(); // Votre instance de CheckBox
 
-        //        // Convertir CheckBox en chaîne de caractères
-        //        string checkboxAsString = myCheckBox.ToString();
-
-
-        //            if (DateTimeOffset.Compare(tbxDateEmbauche.Date, DateTimeOffset.Now) >= 3)
-        //            {
-        //                Convert.ToString(statut = 'Permanent';
-
-        //            else
-        //            {
-        //                statut = 'Journalier';
-
-
-        //            }
-        //            }
-        //        }
 
 
 

@@ -24,6 +24,8 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <!--COLUMNE-->
@@ -76,33 +78,16 @@
                         <TextBlock x:Name="tblPhotoErreur" Foreground="Red"></TextBlock>
                     </StackPanel>
 
-                    <!--<StackPanel Grid.Row="5" Grid.Column="1" Padding="5">
-        <TextBox x:Name="tbxStatut" Header="Statut" MinWidth="200" Margin="10 10 10 10"></TextBox>
-    <TextBlock x:Name="tblStatutErreur" Foreground="Red"></TextBlock>
-</StackPanel>-->
-                    <!--<RadioButtons x:Name="rastatut"
-                          SelectedIndex="0"
-                          Header="Background" 
-                          >
+                    <RadioButtons   x:Name="rastatut"
+                                    Grid.Row="8"
+                                    SelectedIndex="0"
+                                    MaxColumns="2"
+                                    SelectionChanged="rastatut_SelectionChanged">
         
-                <x:String>Journalier</x:String>
-                <x:String>Permanent</x:String>
-            </RadioButtons>-->
-                    <!-- Remplacez la section où se trouvait votre RadioButtons par ce qui suit -->
-                    <StackPanel>
-                        <RadioButton x:Name="JournalierRadioButton"
-                     Content="Journalier"
-                     GroupName="Statut"
-                     Margin="0,5,0,0" />
-
-                        <RadioButton x:Name="PermanentRadioButton"
-                     Content="Permanent"
-                     GroupName="Statut"
-                     Margin="0,5,0,0" />
-                    </StackPanel>
-
-
-
+                                    <x:String>Journalier</x:String>
+                                    <x:String>Permanent</x:String>
+                    </RadioButtons>
+                    
                     <StackPanel Grid.Row="7" Grid.Column="0" Padding="5">
                         <TextBox x:Name="tbxNbHeure" Header="NbHeure" MinWidth="200" Margin="10 10 10 10"></TextBox>
                         <TextBlock x:Name="tblNbHeureErreur" Foreground="Red"></TextBlock>

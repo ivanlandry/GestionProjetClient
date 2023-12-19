@@ -10,13 +10,37 @@ namespace GestionProjetClient.Classes
 {
     internal static class Validation
     {
+        public static bool validerStatut(string statut,DateTimeOffset dateEmbauche)
+        {
+            try
+            {
+                DateTimeOffset now = DateTimeOffset.Now;
+                int dateStatutPermanent = (now - dateEmbauche).Days/365;
+                string statutEmp = "Permanent";
+                if(statut != statutEmp && dateStatutPermanent >= 3 || statut == statutEmp && dateStatutPermanent < 3)
+
+                return false;
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+            
+        }
         public static bool validerDateNaissance(DateTimeOffset date)
         {
             DateTimeOffset now = DateTimeOffset.Now;
-            DateTimeOffset age18 = now.AddYears(-18);
-            DateTimeOffset ageRetraite = now.AddYears(-65);
+            int dateage18 = (now - date).Days/365;
+            int dateageRetraite = (now - date).Days / 365;
+            //DateTimeOffset age18ans ;
 
-            return (date <= age18 && date >= ageRetraite);
+            //DateTimeOffset age18 = now.AddYears(-18);
+            //DateTimeOffset ageRetraite = now.AddYears(-65);
+
+            if (dateage18 >=18 && dateageRetraite <=65)
+            return true;
+            return false;
         }
 
         public static bool validerDateEmbauche(DateTimeOffset date)
@@ -24,10 +48,12 @@ namespace GestionProjetClient.Classes
             try
             {
                 DateTimeOffset now = DateTimeOffset.Now;
-                DateTimeOffset embaucheDate = now.AddDays(0);
+                //DateTimeOffset embaucheDate = now.AddDays(0);
+                int embaucheDate = (now - date).Days+1;
 
-
-                return (date <= embaucheDate);
+                if(embaucheDate >=1)
+                return true;
+                return false;
             }
             catch
             {
@@ -87,5 +113,7 @@ namespace GestionProjetClient.Classes
                 return false;
             }
         }
+
+        
     }
 }
