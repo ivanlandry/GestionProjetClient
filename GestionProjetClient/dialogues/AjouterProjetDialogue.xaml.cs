@@ -22,6 +22,8 @@ namespace GestionProjetClient.dialogues
 {
     public sealed partial class AjouterProjetDialogue : ContentDialog
     {
+        private bool close=false;
+
         private List<string> listClients = new List<string>();
         public AjouterProjetDialogue()
         {
@@ -112,18 +114,20 @@ namespace GestionProjetClient.dialogues
                     Projet projet = new Projet("0",tbxTitre.Text, tabDateDebut[0], tbxDescription.Text,Convert.ToDouble(tbxBudget.Text),cbbNbEmploye.SelectedItem.ToString(), tabIdClient[0], "en cours",0);
 
                     Singleton.getInstance().ajouterProjet(projet);
+                    this.close = false;
                 }
                 else
                 {
-                    this.Closing += AjouterProjetDialogue_Closing;
+                    this.close = true;
                 }
+                this.Closing += AjouterProjetDialogue_Closing;
             }
 
         }
 
         private void AjouterProjetDialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            args.Cancel = true;
+            args.Cancel = this.close;
         }
 
         private void client_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -147,9 +151,12 @@ namespace GestionProjetClient.dialogues
 
         }
 
-        private void ContentDialog_PrimaryButtonClick_1(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
+      
 
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            this.close = false;
+            this.Closing += AjouterProjetDialogue_Closing;
         }
     }
 }

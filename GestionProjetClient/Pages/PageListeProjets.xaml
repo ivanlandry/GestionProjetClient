@@ -15,7 +15,7 @@
         <StackPanel Orientation="Vertical" x:Name="rootProjet">
             <Button x:Name="ajouterProjet" Click="ajouterProjet_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="CadetBlue" Margin="0 20 20 20">Nouveau</Button>
 
-            <TextBlock FontSize="25" Margin="20 20 0 20">Projets en cours</TextBlock>
+            <TextBlock FontSize="25" Margin="20 20 0 20">Liste des projets</TextBlock>
 
             <GridView x:Name="gdvProjets" Margin="0 20 0 0" ItemClick="gdvProjets_ItemClick" IsItemClickEnabled="True">
                 <GridView.ItemContainerStyle>
@@ -25,8 +25,8 @@
                 </GridView.ItemContainerStyle>
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local1:Projet">
-                        <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Stretch">
-                            <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Stretch">
+                       
+                            <StackPanel Orientation="Vertical" Margin="10" Padding="10" HorizontalAlignment="Stretch" BorderBrush="DarkGray" BorderThickness="1">
                                 <TextBlock FontWeight="Bold">Numero</TextBlock>
                                 <TextBlock Text="{ x:Bind Numero}"></TextBlock>
                                 <TextBlock FontWeight="Bold">Titre</TextBlock>
@@ -38,13 +38,13 @@
                                 <TextBlock FontWeight="Bold">Budget</TextBlock>
                                 <TextBlock Text="{ x:Bind Budget}"></TextBlock>
                             </StackPanel>
-                        </StackPanel>
+                        
                     </DataTemplate>
                 </GridView.ItemTemplate>
 
             </GridView>
 
-            <TextBlock FontSize="25" Margin="20 0 0 20">Projets terminés</TextBlock>
+           
         </StackPanel>
     </ScrollViewer>
     

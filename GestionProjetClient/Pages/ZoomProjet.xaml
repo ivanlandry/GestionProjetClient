@@ -82,7 +82,7 @@
 
 
                 <StackPanel  Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-                    <ComboBox  Header="Statut" x:Name="cbbStatut" SelectedIndex="1">
+                    <ComboBox  Header="Statut" x:Name="cbbStatut">
                         <x:String>termine</x:String>
                         <x:String>en cours</x:String>
                     </ComboBox>
@@ -106,7 +106,14 @@
             <TextBlock FontSize="25" Margin="20 20 10 20" FontWeight="Bold">Liste des employés</TextBlock>
             
             <Grid x:Name="gvdEmployesDuProjet">
-                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -115,8 +122,14 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="0">Nom</TextBlock>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="1">Matricule</TextBlock>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="2">Prenom</TextBlock>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="3">Nombre d'heures</TextBlock>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="4">Taux horaire</TextBlock>
+                <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="5">Salaire a payer</TextBlock>
             </Grid>
-            <Line X1="0" Y1="0" X2="{Binding Window.Current }" Y2="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stroke="Black" StrokeThickness="2"/>
+            
         </StackPanel>
       
     </ScrollViewer>

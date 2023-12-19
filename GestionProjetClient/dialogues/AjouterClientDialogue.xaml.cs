@@ -93,7 +93,8 @@ namespace GestionProjetClient.dialogues
                 }
                 else
                 {
-                    this.Closing += AjouterClientDialogue_Closing;
+                    this.Hide();
+                   
                 }
             }
         }

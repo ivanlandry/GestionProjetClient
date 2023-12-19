@@ -61,7 +61,6 @@ namespace GestionProjetClient.Pages
 
             if (resultat == ContentDialogResult.Primary)
             {
-                dialogue.Closing += Dialogue_Closing;   
 
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = rootProjet.XamlRoot;
@@ -76,9 +75,5 @@ namespace GestionProjetClient.Pages
 
         }
 
-        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
-        {
-            args.Cancel = true;
-        }
     }
 }

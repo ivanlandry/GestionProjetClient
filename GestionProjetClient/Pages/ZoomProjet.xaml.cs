@@ -62,15 +62,13 @@ namespace GestionProjetClient.Pages
                 this.projet = e.Parameter as Projet;
 
                 List<Array> listeEmployesDuProjet=Singleton.getInstance().afficherProjet(this.projet.Numero);
+                double salaireTotal = 0;
 
                 // creation dynamique de grid pour la liste des employés
-                for(int i = 1; i <= listeEmployesDuProjet.Count; i++)
-                {
-                    RowDefinition rowDef = new RowDefinition();
-                    gvdEmployesDuProjet.RowDefinitions.Add(rowDef);
-                }
+               
 
-                for(int i = 0; i < listeEmployesDuProjet.Count; i++)
+                int positionGrid = 1;
+                for (int i = 0; i < listeEmployesDuProjet.Count; i++)
                 {
                     int ct = 0;
                     foreach (KeyValuePair<string, string> kvp in listeEmployesDuProjet[i])
@@ -78,24 +76,22 @@ namespace GestionProjetClient.Pages
                         TextBlock txbValue = new TextBlock();
                         txbValue.Margin = new Thickness(0, 10, 10, 0);
 
-                        if (i == 0)
-                        {
-                            txbValue.Text = kvp.Key;
-                            txbValue.FontWeight = FontWeights.Bold;   
-                        }
-                        else
-                        {
-                            txbValue.Text = kvp.Value;
-                        }
-                        Grid.SetRow(txbValue, i);
+                        if (ct == 5)
+                            salaireTotal += Convert.ToDouble(kvp.Value);
+
+                        txbValue.Text = (ct==5)? kvp.Value+"$":kvp.Value;
+                        
+                        Grid.SetRow(txbValue, positionGrid);
                         Grid.SetColumn(txbValue, ct);
 
-                        ct++;
-
                         gvdEmployesDuProjet.Children.Add(txbValue);
+                        ct++;
+                       
                     }
-                
+                    positionGrid++;
+
                 }
+                this.projet.TotalSalaireAPayer = salaireTotal;
 
                 numero.Text = "Details du projet : " + this.projet.Numero;
                 tbxTitre.Text = this.projet.Titre;
@@ -105,7 +101,8 @@ namespace GestionProjetClient.Pages
                 client.Text = this.projet.IdClient;
                 cbbStatut.Text = this.projet.Statut;
                 dateDebut.Text = this.projet.DateDebut;
-                totalSalaire.Text = this.projet.TotalSalaireAPayer.ToString();
+                cbbStatut.SelectedValue = this.projet.Statut;
+                totalSalaire.Text = this.projet.TotalSalaireAPayer.ToString()+"$";
             }
         }
 

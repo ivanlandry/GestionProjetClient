@@ -41,9 +41,8 @@ namespace GestionProjetClient
                 Singleton.getInstance().getNavigationViewItemConnexion().Content = "s'enregistrer";
 
             mainFrame.Navigate(typeof(PageListeProjets));
-
-
         }
+
 
         private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
@@ -51,6 +50,12 @@ namespace GestionProjetClient
 
             switch (item.Name)
             {
+                case "btnBack":
+                    if (mainFrame.CanGoBack)
+                    {
+                        mainFrame.GoBack();
+                    }
+                    break;
                 case "listeProjet":
                     mainFrame.Navigate(typeof(PageListeProjets));
                     break;

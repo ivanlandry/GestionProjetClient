@@ -9,8 +9,9 @@
     mc:Ignorable="d">
 
     <NavigationView PaneDisplayMode="Top" x:Name="navView" PaneTitle="Employés" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="navView_SelectionChanged">
-        <NavigationView.MenuItems>
 
+        <NavigationView.MenuItems>
+            <NavigationViewItem  Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" x:Name="btnBack"></NavigationViewItem>
             <NavigationViewItem Content="Employés" x:Name="listeEmploye" Icon="Folder"></NavigationViewItem>
 
             <NavigationViewItem Content="Clients" x:Name="listeClient" Icon="Folder"></NavigationViewItem>
