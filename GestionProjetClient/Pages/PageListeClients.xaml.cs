@@ -27,7 +27,6 @@ namespace GestionProjetClient.Pages
     /// </summary>
     public sealed partial class PageListeClients : Page
     {
-        //ObservableCollection<Client> listClients = Singleton.getInstance().getClients;
         private ObservableCollection<Client> listClients = null;
         public PageListeClients()
         {
@@ -56,8 +55,6 @@ namespace GestionProjetClient.Pages
 
             if (resultat == ContentDialogResult.Primary)
             {
-                dialogue.Closing += Dialogue_Closing;
-
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = rootClient.XamlRoot;
                 dialog.Title = "Ajout";
@@ -68,12 +65,13 @@ namespace GestionProjetClient.Pages
 
                 this.Frame.Navigate(typeof(PageListeProjets));
             }
+            else
+            {
+                this.Frame.Navigate(typeof(PageListeProjets));
+            }
         }
 
-        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
-        {
-            args.Cancel = false;
-        }
+        
 
         private void gdvClients_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -82,7 +80,6 @@ namespace GestionProjetClient.Pages
 
         private void gdvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (listClients.Count) > 0)
             try
             {
                 this.Frame.Navigate(typeof(PageZoomClients), listClients[gdvClients.SelectedIndex]);

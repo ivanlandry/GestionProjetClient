@@ -77,29 +77,9 @@ namespace GestionProjetClient.Modification
                     tbxPhoto.Text               = employe.Photo.ToString();
                     resultatRadioButton         = employe.Statut.ToString();
                     tbxNbHeure.Text             = employe.NbHeure.ToString();
-                    tblStatutType.Text = resultatRadioButton;
-                //tbxPhoto.Source = Singleton.getInstance().getEmployes(employes).Photo.ToString();
 
-
-                //Uri uri = new Uri(tbxPhoto.Text);
-                //Employe eve3 = new Employe
-                //{
-                //    Photo = tbxPhoto.Text,
-                //};
-                //Singleton.getInstance().getEmployes()
-                //BitmapImage Photo = new BitmapImage(tbxPhoto);
-                // Employe employe14 = new Employe()
-
-
-
-                //if (!Session.Statut)
-                //    btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-                //else
-                //    btModifier.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-
-                //this.employes = Singleton.getInstance().getEmployes();
-                //btModifier.ItemsSource = this.employes;
-
+                    tblStatutType.Text          = resultatRadioButton;
+                    ImageEmploye.Source         = new BitmapImage(new Uri(employe.Photo));
 
 
             }
@@ -175,30 +155,8 @@ namespace GestionProjetClient.Modification
             }
         }
 
-        private void AffichePhoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(PageZoomEmploye), employes[AffichePhoto.SelectedIndex]);
-
-        }
-
         private void rastatut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //try
-            //{
-            //    if (rastatut.SelectedItem == null || !Validation.validerStatut(resultatRadioButton, tbxDateEmbauche.Date))
-
-            //        tblStatutErreur.Text = "Statut invalide en fonction de la date embauche";
-
-            //    else
-            //    {
-            //        resultatRadioButton = rastatut.SelectedItem.ToString();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    //return false;
-            //}
-
             if (rastatut.SelectedItem != null)
             {
                 resultatRadioButton = rastatut.SelectedItem.ToString();

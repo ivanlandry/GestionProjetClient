@@ -21,7 +21,8 @@ namespace GestionProjetClient.dialogues
 {
     public sealed partial class AjouterClientDialogue :ContentDialog
     {
-   
+        private bool close = false;
+
         public AjouterClientDialogue()
         {
             this.InitializeComponent();
@@ -31,6 +32,7 @@ namespace GestionProjetClient.dialogues
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
             bool erreur = false;
             
             if (tbxNom.Text == "")
@@ -91,17 +93,27 @@ namespace GestionProjetClient.dialogues
                     Client client = new Client(0,tbxNom.Text,tbxAdresse.Text,tbxtelephone.Text,tbxEmail.Text);
 
                     Singleton.getInstance().ajouterClient(client);
-                
+                    this.close = false;
+
                 }
                 else
                 {
-                    this.Closing += AjouterClientDialogue_Closing;
+                    this.close = true;
                 }
+                this.Closing += AjouterClientDialogue_Closing;
+
             }
         }
         private void AjouterClientDialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            args.Cancel = true;
+            args.Cancel = this.close;
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            this.close = false;
+            this.Closing += AjouterClientDialogue_Closing;
+            
         }
     }
 }

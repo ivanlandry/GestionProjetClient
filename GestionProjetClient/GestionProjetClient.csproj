@@ -112,14 +112,12 @@
     <PRIResource Remove="NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageFichierCSV.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Remove="Modification\PageZoomProjet.xaml.cs" />
+    <Compile Remove="Pages\PageFichierCSV.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Modification\PageZoomProjet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Remove="Modification\PageZoomProjet.xaml" />
+    <Page Remove="Pages\PageFichierCSV.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Modification\PageZoomClients.xaml">

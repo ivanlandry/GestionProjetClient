@@ -25,6 +25,7 @@ namespace GestionProjetClient.dialogues
     public sealed partial class AjouterEmployeDialogue : ContentDialog
     {
         string resultatRadioButton = "";
+        private bool close = false;
 
         public AjouterEmployeDialogue()
         {
@@ -145,11 +146,13 @@ namespace GestionProjetClient.dialogues
                     {
                         Employe employe = new Employe("hg", tbxNom.Text, tbxPrenom.Text, tbxDateNaissance.Date.ToString("yyyy-MM-dd"), tbxEmail.Text, tbxAdresse.Text, tbxDateEmbauche.Date.ToString("yyyy-MM-dd"), tbxTauxHoraire.Text, tbxPhoto.Text, resultatRadioButton, tbxNbHeure.Text);
                         Singleton.getInstance().ajouterEmploye(employe);
+                        this.close = false;
                     }
                     else
                     {
-                        this.Closing += AjouterEmployeDialogue_Closing;
+                        this.close = true;
                     }
+                    this.Closing += AjouterEmployeDialogue_Closing;
                 }
                 catch (MySqlException e)
                 {
@@ -162,7 +165,7 @@ namespace GestionProjetClient.dialogues
 
         private void AjouterEmployeDialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            args.Cancel = true;
+            args.Cancel = this.close;
 
         }
 
@@ -174,13 +177,16 @@ namespace GestionProjetClient.dialogues
             }
         }
 
+        private void ContentDialog_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
+        {
+
+        }
 
 
-
-
-
-
-
-
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            this.close = false;
+            this.Closing += AjouterEmployeDialogue_Closing;
+        }
     }
 }

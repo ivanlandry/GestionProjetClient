@@ -17,8 +17,6 @@
 
             <NavigationViewItem Content="Projets" x:Name="listeProjet" Icon="Folder"></NavigationViewItem>
             
-            <NavigationViewItem Content="CSV" x:Name="fichierCSV" Icon="Folder"></NavigationViewItem>
-           
         </NavigationView.MenuItems>
         <NavigationView.FooterMenuItems>
             <NavigationViewItem Content="Se connecter" x:Name="connexion" Icon="OtherUser"></NavigationViewItem>

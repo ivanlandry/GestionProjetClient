@@ -30,7 +30,6 @@ namespace GestionProjetClient.Pages
         private ObservableCollection<Employe> listEmployes = null;
         public PageListeEmploye()
         {
-
             this.InitializeComponent();
 
             if (!Session.Statut)
@@ -58,8 +57,6 @@ namespace GestionProjetClient.Pages
             if (resultat == ContentDialogResult.Primary)
             {
 
-                dialogue.Closing += Dialogue_Closing;
-
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = rootEmploye.XamlRoot;
                 dialog.Title = "Ajout";
@@ -72,15 +69,10 @@ namespace GestionProjetClient.Pages
             }
             else
             {
-                dialogue.Closing += Dialogue_Closing;
+               
                 this.Frame.Navigate(typeof(PageListeEmploye));
 
             }
-        }
-
-        private void Dialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
-        {
-            args.Cancel = false;
         }
 
         private void gdvEmployes_ItemClick(object sender, ItemClickEventArgs e)

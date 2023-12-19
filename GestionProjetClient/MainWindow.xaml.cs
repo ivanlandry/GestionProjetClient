@@ -68,10 +68,7 @@ namespace GestionProjetClient
                     mainFrame.Navigate(typeof(PageZoomClients));
                     break;
                 case "modificationProjet":
-                    mainFrame.Navigate(typeof(PageZoomProjet));
-                    break;
-                case "fichierCSV":
-                    mainFrame.Navigate(typeof(PageFichierCSV));
+                    mainFrame.Navigate(typeof(ZoomProjet));
                     break;
                 case "connexion":
                     if (Classes.Session.Statut)

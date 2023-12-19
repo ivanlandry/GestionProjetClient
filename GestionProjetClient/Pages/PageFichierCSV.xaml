@@ -11,11 +11,14 @@
 
     <Grid>
         <StackPanel x:Name="mainpanel">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" >
                 <Button x:Name="btSauvegardeFichier" Click="btSauvegardeFichier_Click">Ajout</Button>
             </StackPanel>
-            
+            <NavigationViewItem Content="CSV" x:Name="telechargerFichierCSV" Icon="Save"></NavigationViewItem>
+
         </StackPanel>
+        
+        
 
     </Grid>
 </Page>
