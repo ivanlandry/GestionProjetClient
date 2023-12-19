@@ -29,18 +29,18 @@ namespace GestionProjetClient.Classes
          string statut;
          double totalSalaireAPayer;
 
-        //public Projet(string numero, string titre, string dateDebut, string description, double budget, string nbEmploye, string idClient, string statut, double totalSalaireAPayer)
-        //{
-        //    this.Numero = numero;
-        //    this.Titre = titre;
-        //    this.DateDebut = dateDebut;
-        //    this.Description = description;
-        //    this.Budget = budget;
-        //    this.NbEmploye = nbEmploye;
-        //    this.IdClient = idClient;
-        //    this.Statut = statut;
-        //    this.TotalSalaireAPayer = totalSalaireAPayer;
-        //}
+        public Projet(string numero, string titre, string dateDebut, string description, double budget, string nbEmploye, string idClient, string statut, double totalSalaireAPayer)
+        {
+            this.Numero = numero;
+            this.Titre = titre;
+            this.DateDebut = dateDebut;
+            this.Description = description;
+            this.Budget = budget;
+            this.NbEmploye = nbEmploye;
+            this.IdClient = idClient;
+            this.Statut = statut;
+            this.TotalSalaireAPayer = totalSalaireAPayer;
+        }
 
         public string Numero { get => numero; set => numero = value; }
         public string Titre { get => titre; set => titre = value; }

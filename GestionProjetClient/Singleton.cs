@@ -157,33 +157,21 @@ namespace GestionProjetClient
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             projets.Clear();
-            Projet projet;
+           // Projet projet;
             while (r.Read())
             {
-                //Projet projet = new Projet(
-                //    r["numeroProjet"].ToString(),
-                //    r["titre"].ToString(),
-                //    r["dateDebut"].ToString(),
-                //    r["description"].ToString(),
-                //    Convert.ToDouble(r["budget"]),
-                //    r["nbEmploye"].ToString(),
-                //    r["idClient"].ToString(),
-                //    r["statutProjet"].ToString(),
-                //    Convert.ToDouble(r["totalSalaire"])
-                //);
-                projet = new Projet
-
-                {
-                    Numero = r["numeroProjet"] as String,
-                    Titre = r["titre"] as String,
-                    DateDebut = r["dateDebut"] as String,
-                    Description = r["description"] as String,
-                    Budget = Convert.ToDouble(r["budget"]),
-                    NbEmploye = r["nbEmploye"] as String,
-                    IdClient = r["idClient"] as String,
-                    Statut = r["statutProjet"] as String,
-                    TotalSalaireAPayer = Convert.ToDouble(r["totalSalaire"])
-                };
+                Projet projet = new Projet(
+                    r["numeroProjet"].ToString(),
+                    r["titre"].ToString(),
+                    r["dateDebut"].ToString(),
+                    r["description"].ToString(),
+                    Convert.ToDouble(r["budget"]),
+                    r["nbEmploye"].ToString(),
+                    r["idClient"].ToString(),
+                    r["statutProjet"].ToString(),
+                    Convert.ToDouble(r["totalSalaire"])
+                );
+               
 
                 projets.Add(projet);
             }
@@ -496,7 +484,7 @@ namespace GestionProjetClient
 
 
 
-        public ObservableCollection<Projet> getListeProjets()
+        /*public ObservableCollection<Projet> getListeProjets()
         {
             listeProjet.Clear();
             try
@@ -543,7 +531,7 @@ namespace GestionProjetClient
 
             return listeProjet;
         }
-
+        */
 
     }
 }

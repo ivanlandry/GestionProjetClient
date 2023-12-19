@@ -19,42 +19,45 @@ using Windows.Foundation.Collections;
 
 namespace GestionProjetClient.dialogues
 {
-    public sealed partial class AjouterClientDialogue :ContentDialog
+    public sealed partial class AjouterClientDialogue : ContentDialog
     {
-   
+        private bool close = false;
+
         public AjouterClientDialogue()
         {
             this.InitializeComponent();
+
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
             bool erreur = false;
-            
+
             if (tbxNom.Text == "")
             {
-                tblNomErreur.Text = "le nom est requis"; 
-                erreur = true; 
-            }                
+                tblNomErreur.Text = "le nom est requis";
+                erreur = true;
+            }
             else
             {
                 tblNomErreur.Text = "";
             }
-                
+
 
             if (tbxAdresse.Text == "")
-            {   
+            {
                 tblAdresseErreur.Text = "l'adrese est requis";
                 erreur = true;
             }
             else
-            { 
+            {
                 tblAdresseErreur.Text = "";
             }
-            
+
             if (tbxtelephone.Text == "")
             {
-                tblTelephoneErreur.Text = "le telephone est requis"; 
+                tblTelephoneErreur.Text = "le telephone est requis";
                 erreur = true;
             }
             else
@@ -69,38 +72,49 @@ namespace GestionProjetClient.dialogues
 
             if (tbxEmail.Text == "")
             {
-                tblEmailErreur.Text = "l'email est requis"; 
-                erreur = true; 
+                tblEmailErreur.Text = "l'email est requis";
+                erreur = true;
             }
             else
             {
                 if (Validation.validerEmail(tbxEmail.Text))
                 {
                     tblEmailErreur.Text = "";
-                }else
+                }
+                else
                     tblEmailErreur.Text = "Adresse email invalide";
             }
-                
 
-            if(this.ContentDialog_PrimaryButtonClick != null)
+
+            if (this.ContentDialog_PrimaryButtonClick != null)
             {
                 if (!erreur)
                 {
-                    Client client = new Client(0,tbxNom.Text,tbxAdresse.Text,tbxtelephone.Text,tbxEmail.Text);
+                    Client client = new Client(0, tbxNom.Text, tbxAdresse.Text, tbxtelephone.Text, tbxEmail.Text);
 
                     Singleton.getInstance().ajouterClient(client);
-                
+                    this.close = false;
+
                 }
                 else
                 {
                     this.Hide();
-                   
+
                 }
+                this.Closing += AjouterClientDialogue_Closing;
             }
+
         }
         private void AjouterClientDialogue_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            args.Cancel = true;
+            args.Cancel = this.close;
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            this.close = false;
+            this.Closing += AjouterClientDialogue_Closing;
+
         }
     }
 }

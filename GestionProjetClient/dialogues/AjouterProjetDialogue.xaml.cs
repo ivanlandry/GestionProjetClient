@@ -146,17 +146,15 @@ namespace GestionProjetClient.dialogues
             tbxClient.ItemsSource = suggestions;
         }
 
-        private void client_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-
-        }
-
-      
-
         private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             this.close = false;
             this.Closing += AjouterProjetDialogue_Closing;
+        }
+
+        private void tbxClient_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+
         }
     }
 }

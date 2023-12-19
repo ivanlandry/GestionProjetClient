@@ -13,7 +13,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical">
-                <AutoSuggestBox x:Name="tbxClient" Header="Client" QueryIcon="Find" TextChanged="client_TextChanged" QuerySubmitted="client_QuerySubmitted"  Margin="10 10 10 10"></AutoSuggestBox>
+                <AutoSuggestBox x:Name="tbxClient" Header="Client" QueryIcon="Find" TextChanged="client_TextChanged" QuerySubmitted="tbxClient_QuerySubmitted"  Margin="10 10 10 10"></AutoSuggestBox>
                 <TextBlock x:Name="tblClientErreur" Foreground="Red"></TextBlock>
                 
                 <TextBox x:Name="tbxTitre" Header="Titre" Margin="10 10 10 10"></TextBox>
